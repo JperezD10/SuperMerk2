@@ -15,6 +15,7 @@ namespace SuperMerk2.Data.Context
         public DbSet<ClienteDatos> DatosCliente { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<Producto> Productos { get; set; }
+        public DbSet<Bitacora> Bitacora { get; set; }
 
         public DbSet<ProductoDeCarrito> ProductosCarrito { get; set; }
         public SuperMerk2Context() : base("SuperMercado")

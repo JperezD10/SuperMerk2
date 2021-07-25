@@ -8,6 +8,27 @@ namespace SuperMerk2.Business
 {
     public class ProductoBL
     {
+        //Alta de producto
+        public void altaProducto(Producto prod)
+        {
+            var db = new Data.GenericDataRepository<Producto>();
+            db.Add(prod);
+        }
+
+        //Modificacion de producto
+        public void modificarProducto(Producto prod)
+        {
+            var db = new Data.GenericDataRepository<Producto>();
+            db.Update(prod, x => x.productoId == prod.productoId);
+        }
+
+        //Borrar producto
+        public void eliminarProducto(Producto prod)
+        {
+            var db = new Data.GenericDataRepository<Producto>();
+            db.Remove(prod);
+        }
+
         //Trae info de un producto y su categoria
         public Producto getDataProducto(int idProducto)
         {

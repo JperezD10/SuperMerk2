@@ -1,8 +1,10 @@
-﻿using System;
+﻿using SuperMerk2.Models;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 using System.Xml;
 using System.Xml.Serialization;
 
@@ -10,7 +12,7 @@ namespace SuperMerk2.Business
 {
     public class ArchivosBL
     {
-        public void serializarAXML<T>(T item)
+        public string serializarAXML<T>(T item)
         {
             XmlSerializer xsSubmit = new XmlSerializer(item.GetType());
             var xml = "";
@@ -23,6 +25,8 @@ namespace SuperMerk2.Business
                     xml = sww.ToString(); // Your XML
                 }
             }
+
+            return xml;
         }
     }
 }
