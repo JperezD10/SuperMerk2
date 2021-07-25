@@ -13,13 +13,6 @@ namespace SuperMerk2.Controllers
         public ActionResult Index()
         {
             ViewBag.Title = "Home Page";
-
-            int idCarrito = 1;
-            ProductoCarritoBL prodcarrbl = new ProductoCarritoBL();
-            ProductoDeCarrito prod = prodcarrbl.getDataProductoCarrito(2);
-            prod.cantidadItems = 6;
-            prodcarrbl.actualizarProdACarrito(prod);
-            string lala = "";
             return View();
         }
     }

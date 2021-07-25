@@ -8,6 +8,28 @@
         public override void Up()
         {
             CreateTable(
+                "dbo.Bitacora",
+                c => new
+                    {
+                        idBitacora = c.Int(nullable: false, identity: true),
+                        username = c.String(maxLength: 100),
+                        descripcion = c.String(nullable: false),
+                    })
+                .PrimaryKey(t => t.idBitacora)
+                .ForeignKey("dbo.Usuario", t => t.username)
+                .Index(t => t.username);
+            
+            CreateTable(
+                "dbo.Usuario",
+                c => new
+                    {
+                        username = c.String(nullable: false, maxLength: 100),
+                        password = c.String(nullable: false, maxLength: 100),
+                        esAdmin = c.Boolean(nullable: false),
+                    })
+                .PrimaryKey(t => t.username);
+            
+            CreateTable(
                 "dbo.Carrito",
                 c => new
                     {
@@ -32,16 +54,6 @@
                 .PrimaryKey(t => t.clienteId)
                 .ForeignKey("dbo.Usuario", t => t.username)
                 .Index(t => t.username);
-            
-            CreateTable(
-                "dbo.Usuario",
-                c => new
-                    {
-                        username = c.String(nullable: false, maxLength: 100),
-                        password = c.String(nullable: false, maxLength: 100),
-                        esAdmin = c.Boolean(nullable: false),
-                    })
-                .PrimaryKey(t => t.username);
             
             CreateTable(
                 "dbo.ProductoDeCarrito",
@@ -94,17 +106,20 @@
             DropForeignKey("dbo.Producto", "categoriaId", "dbo.Categoria");
             DropForeignKey("dbo.Carrito", "clienteDatos_clienteId", "dbo.ClienteDatos");
             DropForeignKey("dbo.ClienteDatos", "username", "dbo.Usuario");
+            DropForeignKey("dbo.Bitacora", "username", "dbo.Usuario");
             DropIndex("dbo.Producto", new[] { "categoriaId" });
             DropIndex("dbo.ProductoDeCarrito", new[] { "productoId" });
             DropIndex("dbo.ProductoDeCarrito", new[] { "carritoId" });
             DropIndex("dbo.ClienteDatos", new[] { "username" });
             DropIndex("dbo.Carrito", new[] { "clienteDatos_clienteId" });
+            DropIndex("dbo.Bitacora", new[] { "username" });
             DropTable("dbo.Categoria");
             DropTable("dbo.Producto");
             DropTable("dbo.ProductoDeCarrito");
-            DropTable("dbo.Usuario");
             DropTable("dbo.ClienteDatos");
             DropTable("dbo.Carrito");
+            DropTable("dbo.Usuario");
+            DropTable("dbo.Bitacora");
         }
     }
 }

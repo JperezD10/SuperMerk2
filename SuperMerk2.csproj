@@ -169,6 +169,7 @@
     <Compile Include="Business\ProductoBL.cs" />
     <Compile Include="Business\ProductoCarritoBL.cs" />
     <Compile Include="Business\ArchivosBL.cs" />
+    <Compile Include="Business\UsuarioBL.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Data\BaseDataService.cs" />
@@ -177,11 +178,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202107220122118_InitialCreate.cs" />
-    <Compile Include="Migrations\202107220122118_InitialCreate.designer.cs">
-      <DependentUpon>202107220122118_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\202107251935313_InitialCreate.cs" />
+    <Compile Include="Migrations\202107251935313_InitialCreate.designer.cs">
+      <DependentUpon>202107251935313_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Bitacora.cs" />
     <Compile Include="Models\Carrito.cs" />
     <Compile Include="Models\Categoria.cs" />
     <Compile Include="Models\ClienteDatos.cs" />
@@ -277,8 +279,8 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202107220122118_InitialCreate.resx">
-      <DependentUpon>202107220122118_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202107251935313_InitialCreate.resx">
+      <DependentUpon>202107251935313_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
