@@ -1,0 +1,155 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Josefin+Sans:ital,wght@1,300&display=swap');
+body {
+    background: radial-gradient(#B5CDA3,#C9E4C5);
+    font-family: 'Bebas Neue', cursive;
+}
+
+.nav a {
+    text-decoration: none;
+    font-size: 35px;
+    color: #000;
+}
+
+.nav a:hover{
+    border-bottom: solid 1px #000;
+}
+
+.nav__responsive{
+    display:none;
+}
+
+.nav i {
+    font-size: 35px;
+    padding-bottom: 8px;
+}
+.nav__container {
+    display: flex;
+    width: 100%;
+    align-items: flex-end;
+    margin: auto;
+    padding-left: 70px;
+    padding-right: 100px;
+}
+
+.nav img {
+    object-fit: cover;
+    width: 200px;
+    height: 100px;
+}
+
+.logo {
+    display: inline-flex;
+    align-items: flex-end;
+}
+
+.nav-title {
+    padding-left: 50px;
+    font-size: 35px;
+}
+
+.nav__ul {
+    flex: 1;
+    text-align: right;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 100px;
+    list-style-type: none;
+}
+
+.nav__container .nav__li {
+    display: inline-block;
+    margin-right: 50px;
+}
+
+.nav__responsive-button{
+    float:right;
+}
+
+.nav__responsive-button i{
+        font-size:50px;
+        z-index:100;
+}
+
+.nav-carrito {
+    border-radius: 100px;
+    display: flex;
+    align-items: center;
+    background: #FAEBE0;
+    width: 25px;
+    height: 25px;
+    justify-content: center;
+    font-size: 20px;
+    margin-bottom: 25px;
+}
+
+
+
+@media only screen and (max-width:1200px) {
+    .container {
+        margin-right: 1px !important;
+        margin-left: 1px !important;
+        margin-bottom: 1px !important;
+    }
+
+    .nav img {
+        object-fit: cover;
+        width: 150px;
+        height: 50px;
+    }
+
+    .nav-title {
+        font-size: 20px;
+    }
+
+    .nav__container {
+        display: none;
+    }
+
+    [nombre="navresponsive"] {
+        display: block;
+    }
+
+    .nav__responsive-div.active {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        padding-top: 30px;
+        opacity: 1;
+    }
+
+    .nav__responsive-div {
+        display: none;
+        opacity: 0;
+    }
+
+    .nav__responsive-ul {
+        list-style: none;
+    }
+
+    .nav__responsive-carrito {
+        border-radius: 100px;
+        display: flex;
+        align-items: center;
+        background: #FAEBE0;
+        width: 25px;
+        height: 25px;
+        justify-content: center;
+        font-size: 20px;
+        margin-bottom: 25px;
+    }
+
+    .nav__responsive-li-carrito {
+        display: flex;
+    }
+}
+
+.container {
+    margin-right: 150px;
+    margin-left: 150px;
+    margin-bottom: 50px;
+}
+
+footer p{
+    color:#000;
+}
+

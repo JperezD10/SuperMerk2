@@ -1,9 +1,4 @@
 ﻿using SuperMerk2.Business;
-using SuperMerk2.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace SuperMerk2.Controllers
@@ -12,8 +7,9 @@ namespace SuperMerk2.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Title = "Home Page";
-            return View();
+            CategoriaBL biz = new CategoriaBL();
+            var product = biz.GetAll();
+            return View(product);
         }
     }
 }

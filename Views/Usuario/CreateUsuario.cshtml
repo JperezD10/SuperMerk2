@@ -1,0 +1,40 @@
+﻿@model SuperMerk2.Models.Usuario
+
+@{
+    ViewBag.Title = "CreateUsuario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="~/Content/Usuario/Create-EditUsuario.css" rel="stylesheet" />
+    <title>Create Usuario</title>
+</head>
+<body>
+    <div class="form">
+        <hr />
+        <div class="Input">
+            @Html.LabelFor(model => model.username, htmlAttributes: new { @class = "form__label" })
+            @Html.EditorFor(model => model.username, new { htmlAttributes = new { @class = "form__input", placeholder = "" } })
+            @Html.ValidationMessageFor(model => model.username, "", new { @class = "Error" })
+        </div>
+        <div class="Input">
+            @Html.LabelFor(model => model.password, htmlAttributes: new { @class = "form__label" })
+            @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "form__input", placeholder = "" } })
+            @Html.ValidationMessageFor(model => model.password, "", new { @class = "Error" })
+        </div>
+        <div class="input-checkbox">
+            @Html.LabelFor(model => model.esAdmin, htmlAttributes: new { @class = "" })
+            @Html.EditorFor(model => model.esAdmin, new { htmlAttributes = new { type = "checkbox" } })
+            @Html.ValidationMessageFor(model => model.esAdmin, "", new { @class = "Error" })
+        </div>
+        <input type="submit" value="Save" class="button" />
+    </div>
+</body>
+</html>
+<div>
+        <p>
+        <a><i class='bx bx-arrow-back'></i> </i>@Html.ActionLink("Volver", "ListUsuario","Usuario")</a>
+        </p>
+    
+</div>

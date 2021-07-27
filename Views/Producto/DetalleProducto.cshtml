@@ -1,0 +1,39 @@
+﻿@model SuperMerk2.Models.Producto
+
+@{
+    ViewBag.Title = "DetalleProducto";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="~/Content/Producto/DetalleProducto.css" rel="stylesheet" />
+    <title>Detalle Producto</title>
+</head>
+<body>
+    <div class="main">
+        <section class="glass">
+            <div class="dashboard">
+                <div class="links">
+                    <div class="link">
+                        <h2>@Model.nombre</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="descripcion">
+                <div class="status">
+                    <h3>Descripcion: </h3><p>@Model.descripcion</p>
+                    <h3>Precio: </h3><p>@Model.precio</p>
+
+                </div>
+                <div class="cards">
+                    <div class="card">
+                        <img src="@Model.imagen" alt="" />
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

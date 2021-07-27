@@ -1,0 +1,21 @@
+﻿@model IEnumerable<SuperMerk2.Models.Producto>
+
+@{
+    ViewBag.Title = "Productos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="categorias">
+    @foreach (var item in Model)
+    {
+        <div class="categorias-individual">
+            <img src="~/Content/Imagenes/Bag.png.png" />
+            @*<img src="@Html.DisplayFor(modelItem => item.imagen)" />*@
+        <h1>
+            @Html.DisplayFor(modelItem => item.nombre)
+            @Html.DisplayFor(modelItem => item.descripcion)
+            <img src="~/Content/Imagenes/Bag.png.png" />
+        </h1>
+        </div>
+    }
+</div>

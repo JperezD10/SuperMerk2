@@ -19,9 +19,9 @@
             try
             {
                 //Categorias
-                Categoria carni = new Categoria() { nombreCategoria = "Carniceria", descripcion = "Los mejores cortes de la zona" };
-                Categoria verdu = new Categoria() { nombreCategoria = "Verduleria", descripcion = "Frutas y Verduras para todos los gustos" };
-                Categoria postre = new Categoria() { nombreCategoria = "Postres", descripcion = "Postres dulces y salados" };
+                Categoria carni = new Categoria() { nombreCategoria = "Carniceria", descripcion = "Los mejores cortes de la zona"};
+                Categoria verdu = new Categoria() { nombreCategoria = "Verduleria", descripcion = "Frutas y Verduras para todos los gustos"};
+                Categoria postre = new Categoria() { nombreCategoria = "Postres", descripcion = "Postres dulces y salados"};
                 Categoria limpia = new Categoria() { nombreCategoria = "Articulos de Limpieza", descripcion = "Limpieza de muebles, electrodomesticos y mas..." };
 
                 context.Categorias.AddOrUpdate(x => x.categoriaId,
@@ -34,10 +34,10 @@
                 context.SaveChanges();
 
                 //Productos
-                var productocarne1 = new Producto() { nombre = "Bife de Chorizo", descripcion = "El mejor bife de la zona", categoria = carni, stockDisponible = 20, precio = 600 };
-                var productocarne2 = new Producto() { nombre = "Vacio", descripcion = "Ideal para la parrilla", categoria = carni, stockDisponible = 15, precio = 450 };
+                var productocarne1 = new Producto() { nombre = "Bife de Chorizo", descripcion = "El mejor bife de la zona", categoria = carni, stockDisponible = 20, precio = 600};
+                var productocarne2 = new Producto() { nombre = "Vacio", descripcion = "Ideal para la parrilla", categoria = carni, stockDisponible = 15, precio = 450, };
                 var productoverdu1 = new Producto() { nombre = "Pera", descripcion = "Para el verano", categoria = verdu, stockDisponible = 0, precio = 35 };
-                var productopostre1 = new Producto() { nombre = "Torta de Chocolate", descripcion = "Espectacular con el cafe", categoria = postre, stockDisponible = 5, precio = 500 };
+                var productopostre1 = new Producto() { nombre = "Torta de Chocolate", descripcion = "Espectacular con el cafe", categoria = postre, stockDisponible = 5, precio = 500};
 
                 context.Productos.AddOrUpdate(x => x.productoId,
                    productocarne1,

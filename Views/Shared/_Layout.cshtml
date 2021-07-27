@@ -1,43 +1,84 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-    <title>@ViewBag.Title</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/Normalize.css" rel="stylesheet" />
+    <link href="~/Content/Layout/Layout.css" rel="stylesheet" />
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <title> Home </title>
+
 </head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Nombre de la aplicación", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+
+    <nav class="nav">
+        <div class="nav__container">
+            <div class="logo">
+                <img src="~/Content/Imagenes/kisspng-portable-network-graphics-supermarket-image-comput-cajas-supermercado-la-tienda-inteligente-5ba47f231cda63.7889709115375071071182.png" />
+                <p style="color:#000;" class="nav-title">SuperMarket</p>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Inicio", "Index", "Home", new { area = "" }, null)</li>
-                    <li>@Html.ActionLink("API", "Index", "Help", new { area = "" }, null)</li>
-                </ul>
+            <ul class="nav__ul">
+                <li class="nav__li"><a>@Html.ActionLink("Inicio", "Index", "Home")</a></li>
+                <li class="nav__li"><a @Html.ActionLink("Productos", "ListAllProductos", "Producto")</a></li>
+                <li class="nav__li"><a href="#">Carrito</a></li>
+                @if (Session["UserSession"] == null)
+                {
+                    <li class="nav__responsive-li"><a>@Html.ActionLink("Admin", "Admin", "Admin")</a></li>
+                }
+            </ul>
+            <i class='bx bx-shopping-bag bx-flip-horizontal'></i>
+            <p style="color:#000 ;" class="nav-carrito">0</p>
+            <hr />
+
+        </div>
+
+        <div nombre="navresponsive" class="nav__responsive">
+            <div class="nav__responsive-container">
+                <div class="logo">
+                    <img src="~/Content/Imagenes/kisspng-portable-network-graphics-supermarket-image-comput-cajas-supermercado-la-tienda-inteligente-5ba47f231cda63.7889709115375071071182.png" />
+                    <p style="color:#000 ;" class="nav-title">SuperMarket</p>
+                </div>
+                <div class="nav__responsive-button">
+                    <i id="btnMenu" class='bx bx-menu'></i>
+                </div>
+                <div id="menuresponse" class="nav__responsive-div">
+                    <ul class="nav__responsive-ul">
+                        <li class="nav__li"><a>@Html.ActionLink("Inicio", "Index", "Home")</a></li>
+                        <li class="nav__li"><a>@Html.ActionLink("Productos", "Index", "Home")</a></li>
+                        <li class="nav__li"><a href="#">Inicio</a></li>
+                        <li class="nav__responsive-li-carrito">
+                            <i class='bx bx-shopping-bag bx-flip-horizontal'></i>
+                            <p style="color:#000 ;" class="nav__responsive-carrito">0</p>
+                        </li>
+                        @if (Session["UserSession"] == null)
+                        {
+                            <li class="nav__responsive-li"><a>@Html.ActionLink("Admin", "Admin", "Admin")</a></li>
+                        }
+                    </ul>
+                    <hr />
+                </div>
+
             </div>
         </div>
-    </div>
-    <div class="container body-content">
+    </nav>
+    <br />
+    <br />
+    <div class="container">
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Mi aplicación ASP.NET</p>
-        </footer>
     </div>
-
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+    <hr />
+    <footer>
+        <p>&copy; @DateTime.Now.Year - Supermercado</p>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+            crossorigin="anonymous"></script>
+    <script>
+        $("#btnMenu").click(function () {
+            $("#menuresponse").toggleClass("active");
+        })
+    </script>
 </body>
 </html>

@@ -42,6 +42,12 @@ namespace SuperMerk2.Business
             db2.Remove(cat);
         }
 
+        public List<Categoria> GetAll()
+        {
+            var db = new Data.GenericDataRepository<Categoria>();
+            return db.GetAll().ToList();
+        }
+
         //Obtener info de una categoria
         public Categoria getDataCategoria(int idCategoria)
         {

@@ -29,6 +29,12 @@ namespace SuperMerk2.Business
             db.Remove(prod);
         }
 
+        public List<Producto> getAll()
+        {
+            var db = new Data.GenericDataRepository<Producto>();
+            return db.GetAll().ToList();
+        }
+
         //Trae info de un producto y su categoria
         public Producto getDataProducto(int idProducto)
         {
@@ -44,7 +50,7 @@ namespace SuperMerk2.Business
         public List<Producto> getProductosPorCategoria(int idCategoria)
         {
             var db = new Data.GenericDataRepository<Producto>();
-            List<Producto> prod = db.GetAll(x => x.categoriaId == idCategoria).ToList();
+            List<Producto> prod = db.GetAll().Where(x => x.categoriaId == idCategoria).ToList();
             //Busco info de la categoria
             CategoriaBL catBL = new CategoriaBL();
             //Como todos los prods tienen la misma categoria, busco la info 1 sola vez

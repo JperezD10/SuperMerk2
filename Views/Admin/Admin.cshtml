@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <link href="~/Content/Admin/Admin.css" rel="stylesheet" />
+    <title>Administrador</title>
+</head>
+<body>
+    <div class="administrador">
+        <ul class="administrador__ul">
+            <li class="administrador__li">
+                <i class='bx bxs-user'></i>
+                <a>@Html.ActionLink("Modificar datos del Usuario", "ListUsuario", "Usuario")</a>
+            </li>
+            <li class="administrador__li">
+                <i class='bx bxs-user'></i>
+                <a>@Html.ActionLink("Modificar datos de Categorias", "ListCategorias", "Categoria")</a>
+            </li>
+            <li class="administrador__li">
+                <i class='bx bxs-user'></i>
+                <a>@Html.ActionLink("Modificar datos de Productos", "ListProductos", "Producto")</a>
+            </li>
+            <li class="administrador__li">
+                <i class='bx bxs-user'></i>
+                <a>@Html.ActionLink("Visualizar Bitacora", "ListarBitacora", "Bitacora")</a>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>
+

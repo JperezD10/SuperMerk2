@@ -1,0 +1,42 @@
+﻿@model IEnumerable<SuperMerk2.Models.Producto>
+
+@{
+    ViewBag.Title = "ListAllProductos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="~/Content/Producto/ListAllProduct.css" rel="stylesheet" />
+    <title> Productos </title>
+    <link href="~/Content/Home/Index.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="productos">
+        @foreach (var item in Model)
+        {
+            <div class="product-card">
+                <div class="logo-cart">
+                    <a href="@Url.Action("DetalleProducto", "Producto", new { id=item.productoId})"> <i class='bx bx-shopping-bag'>  </i></a> 
+                </div>
+                <div class="main-images">
+                    <img src="@item.imagen" />
+                </div>
+
+                <div class="shoe-details">
+                    <span class="shoe_name">@item.nombre</span>
+                    <p>@item.precio</p>
+                    <p>@item.descripcion</p>
+                </div>
+                <div class="button">
+                    <div class="button-layer"></div>
+                    <button>Add To Cart</button>
+                </div>
+            </div>
+        }
+    </div>
+
+</body>
+</html>
+

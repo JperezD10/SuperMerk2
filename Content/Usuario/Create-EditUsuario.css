@@ -1,0 +1,138 @@
+﻿.form {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding:15px;
+}
+
+.form__input {
+    width: 50px;
+    height: 50px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 2px solid #e1e5ee;
+    border-radius: 0.5rem;
+    font-family: inherit;
+    font-size: inherit;
+    color: #000;
+    outline: none;
+    padding: 1.25rem;
+    background: none;
+    margin: 15px;
+}
+.Input {
+    position: relative;
+    width: 20rem;
+    margin:15px;
+    height: 3rem;
+}
+.form__input:hover {
+    border-color: rgb(140,198,63);
+}
+
+.form__input:focus {
+    border-color: rgb(140,198,63);
+}
+
+.form__label {
+    top: -0.5rem;
+    font-size: 1rem;
+    left: 0.8rem;
+    padding: 0 0.5rem;
+    color: #000;
+    cursor: text;
+    transition: top 200ms ease-in, left 200ms ease-in, font-size 200ms ease-in;
+    background-color: transparent;
+    position: absolute
+}
+
+.input-checkbox {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    padding: 1.25rem;
+    width: 20rem;
+    margin: 15px;
+}
+
+input[type="checkbox"]{
+    width:15px;
+    height:15px;
+}
+
+.button {
+ top: 50%;
+ left: 50%;
+ transform: translate(-50, -50);
+}
+
+.button {
+ background: none;
+ color: #000;
+ width: 176px;
+ height: 45px;
+ border: 1px solid #338033;
+ font-size: 18px;
+ border-radius: 4px;
+ transition: .6s;
+ overflow: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: #000;
+    font-size:20px;
+}
+
+.button:focus {
+ outline: none;
+}
+
+.button:before {
+    content: '';
+    display: block;
+    background: rgb(140,198,63);
+    width: 60px;
+    height: 100%;
+    left: 0;
+    top: 0;
+    opacity: .5;
+    filter: blur(30px);
+    transform: translateX(-130px) skewX(-15deg);
+}
+
+.button:after {
+    content: '';
+    display: block;
+    position: absolute;
+    background: rgba(255,255,255,.2);
+    width: 30px;
+    height: 100%;
+    left: 30px;
+    top: 0;
+    opacity: 0;
+    filter: blur(30px);
+    transform: translateX(-100px) scaleX(-15deg);
+}
+
+.button:hover {
+   background: rgb(140,198,63);
+   cursor: pointer;
+}
+
+.button:hover:before {
+ transform: translateX(300px) skewX(-15deg);
+ opacity: .6;
+ transition: .7s;
+}
+
+.button:hover:after {
+ transform: translateX(300px) skewX(-15deg);
+ opacity: 1;
+ transition: .7s;
+}
+

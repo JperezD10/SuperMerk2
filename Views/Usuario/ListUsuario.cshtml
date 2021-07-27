@@ -1,0 +1,57 @@
+﻿@model IEnumerable<SuperMerk2.Models.Usuario>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="~/Content/Usuario/ListUsuario.css" rel="stylesheet" />
+
+    <title> Lista Usuarios</title>
+</head>
+<body>
+    <p>
+        <a><i class='bx bx-message-square-add'> </i>@Html.ActionLink("Crear Nuevo Usuario", "CreateUsuario","Usuario")</a>
+    </p>
+    <div class="dataTable-Container">
+        <table class="datatable">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.username)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.password)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.esAdmin)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.username)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.password)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.esAdmin)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Editar","EditUsuario", "Usuario", new { id = item.username }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.username }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.username })
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</body>
+</html>
+
+
