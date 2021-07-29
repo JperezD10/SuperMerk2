@@ -3,7 +3,7 @@ namespace SuperMerk2.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialMigration : DbMigration
+    public partial class InitialCreate : DbMigration
     {
         public override void Up()
         {
@@ -99,22 +99,41 @@ namespace SuperMerk2.Migrations
                     })
                 .PrimaryKey(t => t.categoriaId);
             
+            CreateTable(
+                "dbo.Venta",
+                c => new
+                    {
+                        idVenta = c.Int(nullable: false, identity: true),
+                        usuarioId = c.String(maxLength: 100),
+                        carritoId = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.idVenta)
+                .ForeignKey("dbo.Carrito", t => t.carritoId, cascadeDelete: true)
+                .ForeignKey("dbo.Usuario", t => t.usuarioId)
+                .Index(t => t.usuarioId)
+                .Index(t => t.carritoId);
+            
         }
         
         public override void Down()
         {
+            DropForeignKey("dbo.Venta", "usuarioId", "dbo.Usuario");
+            DropForeignKey("dbo.Venta", "carritoId", "dbo.Carrito");
             DropForeignKey("dbo.ProductoDeCarrito", "carritoId", "dbo.Carrito");
             DropForeignKey("dbo.ProductoDeCarrito", "productoId", "dbo.Producto");
             DropForeignKey("dbo.Producto", "categoriaId", "dbo.Categoria");
             DropForeignKey("dbo.Carrito", "clienteDatos_clienteId", "dbo.ClienteDatos");
             DropForeignKey("dbo.ClienteDatos", "username", "dbo.Usuario");
             DropForeignKey("dbo.Bitacora", "username", "dbo.Usuario");
+            DropIndex("dbo.Venta", new[] { "carritoId" });
+            DropIndex("dbo.Venta", new[] { "usuarioId" });
             DropIndex("dbo.Producto", new[] { "categoriaId" });
             DropIndex("dbo.ProductoDeCarrito", new[] { "productoId" });
             DropIndex("dbo.ProductoDeCarrito", new[] { "carritoId" });
             DropIndex("dbo.ClienteDatos", new[] { "username" });
             DropIndex("dbo.Carrito", new[] { "clienteDatos_clienteId" });
             DropIndex("dbo.Bitacora", new[] { "username" });
+            DropTable("dbo.Venta");
             DropTable("dbo.Categoria");
             DropTable("dbo.Producto");
             DropTable("dbo.ProductoDeCarrito");
