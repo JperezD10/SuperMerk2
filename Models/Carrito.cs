@@ -14,5 +14,7 @@ namespace SuperMerk2.Models
 
         public ClienteDatos clienteDatos { get; set; }
         public List<ProductoDeCarrito> listaProductosCarrito { get; set; }
+
+        public bool finalizado { get; set; }
     }
 }

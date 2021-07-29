@@ -7,13 +7,13 @@ namespace SuperMerk2.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class Imagenes : IMigrationMetadata
+    public sealed partial class InitialMigration : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Imagenes));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialMigration));
         
         string IMigrationMetadata.Id
         {
-            get { return "202107270514326_Imagenes"; }
+            get { return "202107290030598_InitialMigration"; }
         }
         
         string IMigrationMetadata.Source

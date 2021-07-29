@@ -1,9 +1,9 @@
-﻿namespace SuperMerk2.Migrations
+namespace SuperMerk2.Migrations
 {
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialCreate : DbMigration
+    public partial class InitialMigration : DbMigration
     {
         public override void Up()
         {
@@ -14,6 +14,7 @@
                         idBitacora = c.Int(nullable: false, identity: true),
                         username = c.String(maxLength: 100),
                         descripcion = c.String(nullable: false),
+                        fechaHora = c.DateTime(nullable: false),
                     })
                 .PrimaryKey(t => t.idBitacora)
                 .ForeignKey("dbo.Usuario", t => t.username)
@@ -34,6 +35,7 @@
                 c => new
                     {
                         carritoId = c.Int(nullable: false, identity: true),
+                        finalizado = c.Boolean(nullable: false),
                         clienteDatos_clienteId = c.Int(),
                     })
                 .PrimaryKey(t => t.carritoId)
