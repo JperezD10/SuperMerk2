@@ -24,7 +24,7 @@ namespace SuperMerk2.Controllers
         [HttpPost]
         public ActionResult CreateUsuario(Usuario user)
         {
-            return View();
+            return View("Index", "Home");
         }
 
         [HttpGet]

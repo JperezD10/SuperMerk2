@@ -7,6 +7,18 @@
     padding: 15px;
 }
 
+.select-categorias{
+    width:320px;
+    margin: 15px
+}
+.Error {
+    color: #ff0000;
+    color: #ff0000;
+    position: absolute;
+    top: 69px;
+    left: 19px;
+}
+
 .form__input {
     width: 50px;
     height: 50px;
@@ -28,7 +40,7 @@
 .Input {
     position: relative;
     width: 20rem;
-    margin: 15px;
+    margin: 30px;
     height: 3rem;
 }
 
@@ -82,7 +94,7 @@ input[type="checkbox"] {
     border-radius: 4px;
     transition: .6s;
     overflow: hidden;
-    margin-top: 21px;
+    margin-top: 60px;
 }
 
 a {

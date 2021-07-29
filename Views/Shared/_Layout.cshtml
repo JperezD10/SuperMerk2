@@ -21,13 +21,16 @@
             </div>
             <ul class="nav__ul">
                 <li class="nav__li"><a>@Html.ActionLink("Inicio", "Index", "Home")</a></li>
-                <li class="nav__li"><a @Html.ActionLink("Productos", "ListAllProductos", "Producto")</a></li>
+                <li class="nav__li"><a> @Html.ActionLink("Productos", "ListAllProductos", "Producto")</a></li>
                 <li class="nav__li"><a href="#">Carrito</a></li>
                 @if (Session["UserSession"] == null)
                 {
-                    <li class="nav__responsive-li"><a>@Html.ActionLink("Admin", "Admin", "Admin")</a></li>
+                    <li class="nav__li"><a>@Html.ActionLink("Admin", "Admin", "Admin")</a></li>
                 }
+                <li class="nav__li"><a>@Html.ActionLink("LogOut", "LogOut", "Login")</a></li>
+
             </ul>
+
             <i class='bx bx-shopping-bag bx-flip-horizontal'></i>
             <p style="color:#000 ;" class="nav-carrito">0</p>
             <hr />
@@ -56,6 +59,8 @@
                         {
                             <li class="nav__responsive-li"><a>@Html.ActionLink("Admin", "Admin", "Admin")</a></li>
                         }
+                        <li class="nav__nav__responsive-li"><a>@Html.ActionLink("LogOut", "LogOut", "Login")</a></li>
+
                     </ul>
                     <hr />
                 </div>
