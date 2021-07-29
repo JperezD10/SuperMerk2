@@ -21,7 +21,7 @@ namespace SuperMerk2.Data
                 //Para esto, lo marco para borrar en el proximo saveChanges
                 foreach (var item in items)
                 {
-                    context.Entry(item).State = EntityState.Deleted;
+                    context.Entry(item).State = EntityState.Added;
                 }
 
                 context.SaveChanges();

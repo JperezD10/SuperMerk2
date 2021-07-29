@@ -171,6 +171,7 @@
     <Compile Include="Business\ArchivosBL.cs" />
     <Compile Include="Business\UsuarioBL.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\ArchivoController.cs" />
     <Compile Include="Controllers\BitacoraController.cs" />
     <Compile Include="Controllers\CategoriaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -183,13 +184,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202107251935313_InitialCreate.cs" />
-    <Compile Include="Migrations\202107251935313_InitialCreate.designer.cs">
-      <DependentUpon>202107251935313_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202107270514326_Imagenes.cs" />
-    <Compile Include="Migrations\202107270514326_Imagenes.Designer.cs">
-      <DependentUpon>202107270514326_Imagenes.cs</DependentUpon>
+    <Compile Include="Migrations\202107290037315_InitialCreate.cs" />
+    <Compile Include="Migrations\202107290037315_InitialCreate.Designer.cs">
+      <DependentUpon>202107290037315_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Bitacora.cs" />
@@ -199,6 +196,7 @@
     <Compile Include="Models\Producto.cs" />
     <Compile Include="Models\ProductoDeCarrito.cs" />
     <Compile Include="Models\Usuario.cs" />
+    <Compile Include="Models\Venta.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -277,6 +275,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Archivo\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -299,11 +298,8 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202107251935313_InitialCreate.resx">
-      <DependentUpon>202107251935313_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202107270514326_Imagenes.resx">
-      <DependentUpon>202107270514326_Imagenes.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202107290037315_InitialCreate.resx">
+      <DependentUpon>202107290037315_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
