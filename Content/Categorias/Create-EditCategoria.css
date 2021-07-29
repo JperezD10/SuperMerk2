@@ -25,10 +25,19 @@
     margin: 15px;
 }
 
+.Error {
+    color: #ff0000;
+    color: #ff0000;
+    position: absolute;
+    top: 69px;
+    left: 19px;
+}
+
+
 .Input {
     position: relative;
     width: 20rem;
-    margin: 15px;
+    margin: 30px;
     height: 3rem;
 }
 

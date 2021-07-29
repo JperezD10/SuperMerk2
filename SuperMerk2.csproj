@@ -175,6 +175,7 @@
     <Compile Include="Controllers\BitacoraController.cs" />
     <Compile Include="Controllers\CategoriaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ProductoController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
@@ -206,9 +207,12 @@
     <Content Include="Content\Categorias\Create-EditCategoria.css" />
     <Content Include="Content\Categorias\ListCategoria.css" />
     <Content Include="Content\Home\Index.css" />
+    <Content Include="Content\Imagenes\avatar.svg" />
     <Content Include="Content\Imagenes\Bag.png.png" />
     <Content Include="Content\Imagenes\kisspng-portable-network-graphics-supermarket-image-comput-cajas-supermercado-la-tienda-inteligente-5ba47f231cda63.7889709115375071071182.png" />
+    <Content Include="Content\Imagenes\wave.png" />
     <Content Include="Content\Layout\Layout.css" />
+    <Content Include="Content\Login\Login.css" />
     <Content Include="Content\normalize.css" />
     <Content Include="Content\Producto\Create-EditProducto.css" />
     <Content Include="Content\Producto\DetalleProducto.css" />
@@ -272,6 +276,7 @@
     <Content Include="Views\Producto\ListAllProductos.cshtml" />
     <Content Include="Views\Producto\DetalleProducto.cshtml" />
     <Content Include="Views\Bitacora\ListarBitacora.cshtml" />
+    <Content Include="Views\Login\LogIn.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

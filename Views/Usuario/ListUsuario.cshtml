@@ -11,10 +11,7 @@
 
     <title> Lista Usuarios</title>
 </head>
-<body>
-    <p>
-        <a><i class='bx bx-message-square-add'> </i>@Html.ActionLink("Crear Nuevo Usuario", "CreateUsuario","Usuario")</a>
-    </p>
+<body> 
     <div class="dataTable-Container">
         <table class="datatable">
             <tr>
@@ -44,7 +41,6 @@
                     </td>
                     <td>
                         @Html.ActionLink("Editar","EditUsuario", "Usuario", new { id = item.username }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.username }) |
                         @Html.ActionLink("Delete", "Delete", new { id = item.username })
                     </td>
                 </tr>

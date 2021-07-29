@@ -1,9 +1,10 @@
 ﻿@model SuperMerk2.Models.Usuario
 
 @{
-    ViewBag.Title = "CreateUsuario";
+    ViewBag.Title = "LogIn";
     Layout = null;
 }
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,12 +45,16 @@
                         @Html.ValidationMessageFor(model => model.password, "", new { @class = "Error" })
                     </div>
                 </div>
-                <a>@Html.ActionLink("LogIn", "LogIn", "Login")</a>
-                <input type="submit" onclick="Ingresar()" class="btn" value="Registrarse">
-
+                <a>@Html.ActionLink("Registrarse", "CreateUsuario", "Usuario")</a>
+                <p style="color:red; display:none" id="ErrorGeneral"></p> 
+                 <input type="submit" onclick="Ingresar()" class="btn" value="Login">
+                
             </div>
         </div>
     }
+
+
+    <script src="~/Scripts/Login.js"></script>
 
     <script>
         const inputs = document.querySelectorAll(".input");
@@ -80,6 +85,9 @@
             $("#username").val() == "" ? $("#Usuario").css("border-bottom", "2px solid #ff0000") : $("#input-div").css("border-bottom", "2px solid ##d9d9d9");
             $("#password").val() == "" ? $("#Contraseña").css("border-bottom", "2px solid #ff0000") : $("#input-div").css("border-bottom", "2px solid ##d9d9d9");
         }
+
     </script>
 </body>
 </html>
+
+

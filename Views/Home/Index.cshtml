@@ -10,19 +10,22 @@
     <div class="categorias">
         @foreach (var item in Model)
         {
-            <div class="cards">
-                <div class="card card1">
-                    <div class="cards__container">
-                        <img alt="Vegetales" src="@item.imagen"/>
-                        
-                    </div>
-                    <div class="details">
-                        <h3>@item.nombreCategoria</h3>
-                        <p>@item.descripcion</p>
+            <a href="@Url.Action("ListProductosxCategory", "Producto", new { id=item.categoriaId})">
+                <div class="cards">
+                    <div class="card card1">
+                        <div class="cards__container">
+                            <img alt="Vegetales" src="@item.imagen" />
 
+                        </div>
+                        <div class="details">
+                            <h3>@item.nombreCategoria</h3>
+                            <p>@item.descripcion</p>
+
+                        </div>
                     </div>
                 </div>
-            </div>
+            </a>
+
         }
     </div>
 </body>
