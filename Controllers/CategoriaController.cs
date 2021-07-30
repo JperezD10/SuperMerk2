@@ -53,7 +53,7 @@ namespace SuperMerk2.Controllers
         [HttpGet]
         public ActionResult DeleteCategoria(int idCategoria)
         {
-            CategoriaBL cat = new CategoriaBL();
+            CategoriaBL cat = new CategoriaBL(); 
             var categoria = cat.getDataCategoria(idCategoria);
             cat.eliminarCategoria(categoria);
             return RedirectToAction("ListCategorias", "Categoria");
