@@ -13,6 +13,7 @@ namespace SuperMerk2.Controllers
         // GET: Bitacora
         public ActionResult ListarBitacora()
         {
+            RedirectLogin();
             BitacoraBL biz = new BitacoraBL();
             var bitacora = biz.traerBitacoraCompleta();
             return View(bitacora);
@@ -20,9 +21,18 @@ namespace SuperMerk2.Controllers
 
         public ActionResult ListarBitacoraPorUsuario(Usuario user)
         {
+            RedirectLogin();
             BitacoraBL biz = new BitacoraBL();
             var bitacora = biz.traerBitacoraUsuario(user.username);
             return View(bitacora);
+        }
+
+        private void RedirectLogin()
+        {
+            if (Session["UserSession"] == null)
+            {
+                RedirectToAction("LogIn", "Login");
+            }
         }
     }
 }

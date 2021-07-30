@@ -11,8 +11,16 @@ namespace SuperMerk2.Controllers
         // GET: Admin
         public ActionResult Admin()
         {
+            RedirectLogin();
             return View();
         }
-       
+
+        private void RedirectLogin()
+        {
+            if (Session["UserSession"] == null)
+            {
+                RedirectToAction("LogIn", "Login");
+            }
+        }
     }
 }

@@ -32,6 +32,7 @@ namespace SuperMerk2.Models
         public int stockDisponible { get; set; }
 
         [Required(ErrorMessage = "Por favor ingrese el precio del producto"), Display(Name = "Precio")]
+        [RegularExpression("^[0-9]{2}$",ErrorMessage ="Solo valores de 2 y 3 cifras")]
         [DataType(DataType.Currency)]
         public double precio { get; set; }
     }

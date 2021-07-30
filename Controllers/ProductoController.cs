@@ -13,6 +13,7 @@ namespace SuperMerk2.Controllers
         [HttpGet]
         public ActionResult ListAllProductos()
         {
+            RedirectLogin();
             ProductoBL biz = new ProductoBL();
             var product = biz.getAll();
             return View(product);
@@ -20,13 +21,20 @@ namespace SuperMerk2.Controllers
         [HttpGet]
         public ActionResult ListProductos()
         {
+            RedirectLogin();
             ProductoBL biz = new ProductoBL();
             var product = biz.getAll();
+            Business.CategoriaBL bL = new CategoriaBL();
+            foreach (var p in product)
+            {
+                p.categoria = bL.GetAll().Where(c => c.categoriaId == p.categoriaId).FirstOrDefault();
+            }
             return View(product);
         }
         [HttpGet]
         public ActionResult ListProductosxCategory(int id)
         {
+            RedirectLogin();
             ProductoBL biz = new ProductoBL();
             var product = biz.getProductosPorCategoria(id);
             return View("ListAllProductos", product);
@@ -35,6 +43,7 @@ namespace SuperMerk2.Controllers
         [HttpGet]
         public ActionResult DetalleProducto(int id)
         {
+            RedirectLogin();
             ProductoBL biz = new ProductoBL();
             var product = biz.getDataProducto(id);
             return View(product);
@@ -52,7 +61,7 @@ namespace SuperMerk2.Controllers
             {
                 ProductoBL biz = new ProductoBL();
                 biz.altaProducto(product);
-                return View();
+                return RedirectToAction("ListProductos");
             }
             else
             {
@@ -64,6 +73,7 @@ namespace SuperMerk2.Controllers
         [HttpGet]
         public ActionResult EditProducto(int id)
         {
+            RedirectLogin();
             ProductoBL biz = new ProductoBL();
             var producto = biz.getDataProducto(id);
             return View(producto);
@@ -86,6 +96,7 @@ namespace SuperMerk2.Controllers
         [HttpGet]
         public ActionResult ProductosCategoria(int id)
         {
+            RedirectLogin();
             ProductoBL biz = new ProductoBL();
             var product = biz.getProductosPorCategoria(id);
             return View(product);
@@ -93,12 +104,18 @@ namespace SuperMerk2.Controllers
         [HttpGet]
         public ActionResult EliminarProductos(int id)
         {
+            RedirectLogin();
             ProductoBL biz = new ProductoBL();
-
             biz.eliminarProducto(biz.getDataProducto(id));
             return RedirectToAction("ListProductos", "Producto");
         }
 
-
+        private void RedirectLogin()
+        {
+            if (Session["UserSession"] == null)
+            {
+                RedirectToAction("LogIn", "Login");
+            }
+        }
     }
 }

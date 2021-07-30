@@ -43,5 +43,13 @@ namespace SuperMerk2.Controllers
                 serializer.Serialize(Response.OutputStream, bitacora);
             }
         }
+
+        private void RedirectLogin()
+        {
+            if (Session["UserSession"] == null)
+            {
+                RedirectToAction("LogIn", "Login");
+            }
+        }
     }
 }

@@ -10,6 +10,7 @@ namespace SuperMerk2.Controllers
         [HttpGet]
         public ActionResult ListUsuario()
         {
+            RedirectLogin();
             UsuarioBL biz = new UsuarioBL();
             var user = biz.Listar();
             return View(user);
@@ -66,6 +67,14 @@ namespace SuperMerk2.Controllers
             catch
             {
                 return View();
+            }
+        }
+
+        private void RedirectLogin()
+        {
+            if (Session["UserSession"]==null)
+            {
+                RedirectToAction("LogIn", "Login");
             }
         }
     }

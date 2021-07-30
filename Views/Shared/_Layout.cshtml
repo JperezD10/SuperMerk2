@@ -19,11 +19,12 @@
                 <img src="~/Content/Imagenes/kisspng-portable-network-graphics-supermarket-image-comput-cajas-supermercado-la-tienda-inteligente-5ba47f231cda63.7889709115375071071182.png" />
                 <p style="color:#000;" class="nav-title">SuperMarket</p>
             </div>
+            @{SuperMerk2.Models.Usuario usuario = Session["UserSession"] as SuperMerk2.Models.Usuario; }
             <ul class="nav__ul">
                 <li class="nav__li"><a>@Html.ActionLink("Inicio", "Index", "Home")</a></li>
                 <li class="nav__li"><a> @Html.ActionLink("Productos", "ListAllProductos", "Producto")</a></li>
                 <li class="nav__li"><a href="#">Carrito</a></li>
-                @if (Session["UserSession"] == null)
+                @if (usuario.esAdmin)
                 {
                     <li class="nav__li"><a>@Html.ActionLink("Admin", "Admin", "Admin")</a></li>
                 }
@@ -36,7 +37,6 @@
             <hr />
 
         </div>
-
         <div nombre="navresponsive" class="nav__responsive">
             <div class="nav__responsive-container">
                 <div class="logo">
@@ -55,9 +55,9 @@
                             <i class='bx bx-shopping-bag bx-flip-horizontal'></i>
                             <p style="color:#000 ;" class="nav__responsive-carrito">0</p>
                         </li>
-                        @if (Session["UserSession"] == null)
+                        @if (usuario.esAdmin)
                         {
-                            <li class="nav__responsive-li"><a>@Html.ActionLink("Admin", "Admin", "Admin")</a></li>
+                        <li class="nav__responsive-li"><a>@Html.ActionLink("Admin", "Admin", "Admin")</a></li>
                         }
                         <li class="nav__nav__responsive-li"><a>@Html.ActionLink("LogOut", "LogOut", "Login")</a></li>
 

@@ -13,6 +13,7 @@ namespace SuperMerk2.Controllers
         // GET: Categoria
         public ActionResult ListCategorias()
         {
+            RedirectLogin();
             CategoriaBL biz = new CategoriaBL();
             var product = biz.GetAll();
             return View(product);
@@ -42,6 +43,12 @@ namespace SuperMerk2.Controllers
             return View();
         }
 
-
+        private void RedirectLogin()
+        {
+            if (Session["UserSession"] == null)
+            {
+                RedirectToAction("LogIn", "Login");
+            }
+        }
     }
 }
