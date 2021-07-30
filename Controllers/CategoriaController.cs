@@ -31,16 +31,32 @@ namespace SuperMerk2.Controllers
         }
 
         [HttpGet]
-        public ActionResult EditCategoria()
+        public ActionResult EditCategoria( int idCategoria)
         {
-            CategoriaBL biz = new CategoriaBL();
-           // var product = biz.getDataCategoria(id);
-            return View();
+            CategoriaBL cat = new CategoriaBL();
+            var categoria = cat.getDataCategoria(idCategoria);
+            return View(categoria);
         }
         [HttpPost]
-        public ActionResult EditCategoria(int id)
+        public ActionResult EditCategoria(Categoria categoria)
         {
-            return View();
+            if (ModelState.IsValid)
+            {
+                CategoriaBL cat = new CategoriaBL();
+                cat.modificarCategoria(categoria);
+                return RedirectToAction("ListCategorias", "Categoria");
+            }
+            else
+                return View();
+        }
+
+        [HttpGet]
+        public ActionResult DeleteCategoria(int idCategoria)
+        {
+            CategoriaBL cat = new CategoriaBL();
+            var categoria = cat.getDataCategoria(idCategoria);
+            cat.eliminarCategoria(categoria);
+            return RedirectToAction("ListCategorias", "Categoria");
         }
 
         private void RedirectLogin()

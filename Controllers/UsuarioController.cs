@@ -25,14 +25,23 @@ namespace SuperMerk2.Controllers
         [HttpPost]
         public ActionResult CreateUsuario(Usuario user)
         {
-            return View("Index", "Home");
+            UsuarioBL gestor = new UsuarioBL();
+            if (gestor.altaUsuario(user))
+            {
+                Session["ErrorRegistro"] = null;
+                return RedirectToAction("LogIn", "Login");
+            }
+            else
+            {
+                Session["ErrorRegistro"] = "Usuario existente";
+                return View();
+            }
         }
 
         [HttpGet]
-        public ActionResult EditUsuario(string user)
+        public ActionResult EditUsuario()
         {
-
-            return View(user);
+            return View();
         }
 
         [HttpPost]

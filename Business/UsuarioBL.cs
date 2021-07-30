@@ -8,10 +8,19 @@ namespace SuperMerk2.Business
 {
     public class UsuarioBL
     {
-        public void altaUsuario(Usuario user)
+        public bool altaUsuario(Usuario user)
         {
-            var db = new Data.GenericDataRepository<Usuario>();
-            db.Add(user);
+            bool resutlado = false;
+            var usuario = this.Listar().Where(u => u.username == user.username).FirstOrDefault();
+            if (usuario == null)
+            {
+                var db = new Data.GenericDataRepository<Usuario>();
+                db.Add(user);
+                resutlado = true;
+            }
+            else
+                resutlado = false;
+            return resutlado;
         }
 
         public List<Usuario> Listar()

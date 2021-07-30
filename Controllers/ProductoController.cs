@@ -110,6 +110,13 @@ namespace SuperMerk2.Controllers
             return RedirectToAction("ListProductos", "Producto");
         }
 
+        [HttpGet]
+        public ActionResult AddToCart(Producto product)
+        {
+            RedirectLogin();
+            return RedirectToAction("ListProductosxCategory", "Producto", new { id = product.categoriaId });
+        }
+
         private void RedirectLogin()
         {
             if (Session["UserSession"] == null)

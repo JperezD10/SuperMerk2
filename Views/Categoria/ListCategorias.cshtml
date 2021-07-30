@@ -43,8 +43,8 @@
                         @Html.DisplayFor(modelItem => item.imagen)
                     </td>
                     <td>
-                        @Html.ActionLink("Editar", "EditCategoria", "Categoria", new { id = item.categoriaId }) |
-                        @Html.ActionLink("Eliminar","DeleteCategoria", "Categoria", new { id = item.categoriaId })
+                        @Html.ActionLink("Editar", "EditCategoria", "Categoria", new { idCategoria = item.categoriaId }, new { }) |
+                        @Html.ActionLink("Eliminar","DeleteCategoria", "Categoria", new { idCategoria = item.categoriaId }, new { })
                     </td>
                 </tr>
             }

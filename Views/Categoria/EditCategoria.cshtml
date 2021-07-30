@@ -12,8 +12,11 @@
     <title>Create Usuario</title>
 </head>
 <body>
+    @using (Html.BeginForm())
+    {
     <div class="form">
         <hr />
+        @Html.HiddenFor(model => model.categoriaId)
         <div class="Input">
             @Html.LabelFor(model => model.nombreCategoria, htmlAttributes: new { @class = "form__label" })
             @Html.EditorFor(model => model.nombreCategoria, new { htmlAttributes = new { @class = "form__input", placeholder = "" } })
@@ -32,10 +35,11 @@
 
         <input type="submit" value="Save" class="button" />
     </div>
-</body>
+    }
+    </body>
 </html>
 <div>
     <p>
-        <a><i class='bx bx-arrow-back'></i> </i>@Html.ActionLink("Volver", "ListCategorias", "Categoria")</a>
+        <a><i class='bx bx-arrow-back'></i>@Html.ActionLink("Volver", "ListCategorias", "Categoria")</a>
     </p>
 </div>

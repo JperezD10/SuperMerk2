@@ -23,7 +23,7 @@
             </div>
             <div class="login-content">
                 <img src="~/Content/Imagenes/avatar.svg" />
-                <h2 class="title">Welcome</h2>
+                <h2 class="title">Registro</h2>
                 <div id="Usuario" class="input-div one">
                     <div class="i">
                         <i class="fas fa-user"></i>
@@ -42,6 +42,11 @@
                         <h5>Password</h5>
                         @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "input", id = "password" } })
                         @Html.ValidationMessageFor(model => model.password, "", new { @class = "Error" })
+                        @if (Session["ErrorRegistro"] != null)
+                        {
+                            string mensajeError = Session["ErrorRegistro"] as string;
+                            <p class="Error">@mensajeError</p>
+                        }
                     </div>
                 </div>
                 <a>@Html.ActionLink("LogIn", "LogIn", "Login")</a>
