@@ -24,6 +24,8 @@ namespace SuperMerk2.Controllers
                 if (usuarioSession != null)
                 {
                     Session["UserSession"] = usuarioSession;
+                    //Log Evento
+                    new BitacoraController().RegistrarEvento(Session["UserSession"] as Usuario, "Se logeo el usuario");
                     return RedirectToAction("Index", "Home");
                 }
                 else

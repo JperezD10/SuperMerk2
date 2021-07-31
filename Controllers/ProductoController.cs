@@ -61,6 +61,8 @@ namespace SuperMerk2.Controllers
             {
                 ProductoBL biz = new ProductoBL();
                 biz.altaProducto(product);
+                //Log Evento
+                new BitacoraController().RegistrarEvento(Session["UserSession"] as Usuario, "Creo un producto");
                 return RedirectToAction("ListProductos");
             }
             else
@@ -85,6 +87,8 @@ namespace SuperMerk2.Controllers
             { 
                 ProductoBL biz = new ProductoBL();
                 biz.modificarProducto(product);
+                //Log Evento
+                new BitacoraController().RegistrarEvento(Session["UserSession"] as Usuario, "Modifico un producto");
                 return RedirectToAction("ListProductos", "Producto");
             }
             else
@@ -107,6 +111,8 @@ namespace SuperMerk2.Controllers
             RedirectLogin();
             ProductoBL biz = new ProductoBL();
             biz.eliminarProducto(biz.getDataProducto(id));
+            //Log Evento
+            new BitacoraController().RegistrarEvento(Session["UserSession"] as Usuario, "Elimino un producto");
             return RedirectToAction("ListProductos", "Producto");
         }
 
@@ -115,6 +121,7 @@ namespace SuperMerk2.Controllers
         {
             RedirectLogin();
             CarritoBL cart = new CarritoBL();
+            ///????????????????????????????
             return RedirectToAction("ListProductosxCategory", "Producto", new { id = product.categoriaId });
         }
 

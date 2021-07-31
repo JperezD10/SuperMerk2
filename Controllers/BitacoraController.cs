@@ -27,6 +27,12 @@ namespace SuperMerk2.Controllers
             return View(bitacora);
         }
 
+        public void RegistrarEvento(Usuario user, string descripcion)
+        {
+            BitacoraBL biz = new BitacoraBL();
+            biz.registrarEvento(user, descripcion);
+        }
+
         private void RedirectLogin()
         {
             if (Session["UserSession"] == null)
