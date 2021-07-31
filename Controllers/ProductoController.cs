@@ -114,6 +114,7 @@ namespace SuperMerk2.Controllers
         public ActionResult AddToCart(Producto product)
         {
             RedirectLogin();
+            CarritoBL cart = new CarritoBL();
             return RedirectToAction("ListProductosxCategory", "Producto", new { id = product.categoriaId });
         }
 

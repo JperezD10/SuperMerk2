@@ -1,6 +1,7 @@
 ﻿using SuperMerk2.Business;
 using SuperMerk2.Models;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace SuperMerk2.Controllers
@@ -39,22 +40,39 @@ namespace SuperMerk2.Controllers
         }
 
         [HttpGet]
-        public ActionResult EditUsuario()
+        public ActionResult EditUsuario(string username)
         {
-            return View();
+            UsuarioBL usuarioBL = new UsuarioBL();
+            var usuario = usuarioBL.Listar().Where(u => u.username == username).FirstOrDefault();
+            return View(usuario);
         }
 
         [HttpPost]
-        public ActionResult EditUsuario(int id, FormCollection collection)
+        public ActionResult EditUsuario(Usuario usuario)
         {
-            try
+            if (ModelState.IsValid)
             {
-                return RedirectToAction("Index");
+                UsuarioBL usuarioBL = new UsuarioBL();
+                var usercompare = usuarioBL.Listar().Where(u => u.username == usuario.username).FirstOrDefault();
+                if (usercompare != null && usercompare.username == usuario.username)
+                {
+                    Session["UsernameExistente"] = "Ese nombre de usuario esta ocupado por otro usuario";
+                    return View();
+                }
+                else if (usercompare != null && usercompare.username != usuario.username)
+                {
+                    Session["UsernameExistente"] = null;
+                    usuarioBL.EditUsuario(usuario, usercompare.username);
+                    return RedirectToAction("ListUsuario");
+                }
+                else
+                {
+                    
+                    return RedirectToAction("ListUsuario");
+                }
             }
-            catch
-            {
+            else
                 return View();
-            }
         }
 
         // GET: Usuario/Delete/5

@@ -85,7 +85,7 @@ namespace SuperMerk2.Business
         }
 
         //Actualizar item del carrito
-        public Carrito borrarItemCarrito(int idCarrito, int idProductodeCarrito, int cantidad)
+        public Carrito ActualizarItemCarrito(int idCarrito, int idProductodeCarrito, int cantidad)
         {
             //Busco el producto
             Producto prod = new ProductoBL().getDataProducto(idProductodeCarrito);

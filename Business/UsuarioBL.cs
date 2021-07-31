@@ -23,6 +23,11 @@ namespace SuperMerk2.Business
             return resutlado;
         }
 
+        public void EditUsuario(Usuario usuario, string username)
+        {
+            var db = new Data.GenericDataRepository<Usuario>();
+            db.Update(usuario, u => u.username == username);
+        }
         public List<Usuario> Listar()
         {
             var db = new Data.GenericDataRepository<Usuario>();
