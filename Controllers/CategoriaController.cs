@@ -13,10 +13,25 @@ namespace SuperMerk2.Controllers
         // GET: Categoria
         public ActionResult ListCategorias()
         {
-            RedirectLogin();
-            CategoriaBL biz = new CategoriaBL();
-            var product = biz.GetAll();
-            return View(product);
+            Usuario usuario = Session["UserSession"] as Usuario;
+            if (usuario != null)
+            {
+                if (usuario.esAdmin)
+                {
+                    CategoriaBL biz = new CategoriaBL();
+                    var product = biz.GetAll();
+                    return View(product);
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+            }
+            else
+            {
+                return RedirectToAction("LogIn", "Login");
+            }
+
         }
 
         [HttpGet]
@@ -45,7 +60,7 @@ namespace SuperMerk2.Controllers
                 CategoriaBL cat = new CategoriaBL();
                 cat.modificarCategoria(categoria);
                 //Log Evento
-                //new BitacoraController().RegistrarEvento(Session["UserSession"] as Usuario, "Modifico una categoria");
+                new BitacoraController().RegistrarEvento(Session["UserSession"] as Usuario, "Modifico una categoria");
                 return RedirectToAction("ListCategorias", "Categoria");
             }
             else
@@ -59,16 +74,8 @@ namespace SuperMerk2.Controllers
             var categoria = cat.getDataCategoria(idCategoria);
             cat.eliminarCategoria(categoria);
             //Log Evento
-           // new BitacoraController().RegistrarEvento(Session["UserSession"] as Usuario, "Borro una categoria");
+            new BitacoraController().RegistrarEvento(Session["UserSession"] as Usuario, "Borro una categoria");
             return RedirectToAction("ListCategorias", "Categoria");
-        }
-
-        private void RedirectLogin()
-        {
-            if (Session["UserSession"] == null)
-            {
-                RedirectToAction("LogIn", "Login");
-            }
         }
     }
 }

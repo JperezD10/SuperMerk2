@@ -14,33 +14,51 @@
 </head>
 <body>
     <div class="productos">
-        @foreach (var item in Model)
+        @if (Model.Count() == 0)
         {
-
-
-            if (item.stockDisponible > 0)
-            {
-                <div class="product-card">
-                    <div class="logo-cart">
-                        <a href="@Url.Action("DetalleProducto", "Producto", new { id=item.productoId})"> <i class='bx bx-shopping-bag'>  </i></a>
-                    </div>
-                    <div class="main-images">
-                        <img src="@item.imagen" />
-                    </div>
-
-                    <div class="shoe-details">
-                        <span class="shoe_name">@item.nombre</span>
-                        <p>@item.precio</p>
-                        <p>@item.descripcion</p>
-                    </div>
-                    <div class="button">
-                        <div class="button-layer"></div>
-                        <button onclick="location.href='@Url.Action("AddToCart", "Producto", item)'">Add To Cart</button>
-                    </div>
-                </div>
-            }
-
+            <style>
+                .productos {
+                    flex-direction: column;
+                    align-items: center;
+                }
+                h3{
+                    color:#000;
+                }
+            </style>
+            <h3>No hay productos</h3>
+            <img style="width:250px !important; height:250px !important;" src="~/Content/Imagenes/Tomate_Triste.png" />
         }
+        else
+        {
+            foreach (var item in Model)
+            {
+
+
+                if (item.stockDisponible > 0)
+                {
+                    <div class="product-card">
+                        <div class="logo-cart">
+                            <a href="@Url.Action("DetalleProducto", "Producto", new { id=item.productoId})"> <i class='bx bx-shopping-bag'>  </i></a>
+                        </div>
+                        <div class="main-images">
+                            <img src="@item.imagen" />
+                        </div>
+
+                        <div class="shoe-details">
+                            <span class="shoe_name">@item.nombre</span>
+                            <p>@item.precio</p>
+                            <p>@item.descripcion</p>
+                        </div>
+                        <div class="button">
+                            <div class="button-layer"></div>
+                            <button onclick="location.href='@Url.Action("AddToCart", "Producto", item)'">Add To Cart</button>
+                        </div>
+                    </div>
+                }
+
+            }
+        }
+
     </div>
 
 </body>

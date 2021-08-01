@@ -159,3 +159,29 @@ a {
     border: solid 1px #000;
     object-fit: cover;
 }
+
+.dropdown {
+    width: 21rem;
+    position: relative;
+    margin-left: 16px;
+}
+
+
+.dropdown-list {
+    border-radius: 4px;
+    background-color: white;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    transition: opacity 0.2s linear, visibility 0.2s linear;
+    transform: translateY(10px);
+    height:29px;
+    width:320px;
+}
+
+.dropdown-list:active{
+
+}
+
+

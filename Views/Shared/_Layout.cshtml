@@ -26,17 +26,19 @@
                 <p style="color:#000;" class="nav-title">SuperMarket</p>
             </div>
             @{SuperMerk2.Models.Usuario usuario = Session["UserSession"] as SuperMerk2.Models.Usuario; }
-            <ul class="nav__ul">
-                <li class="nav__li"><a>@Html.ActionLink("Inicio", "Index", "Home")</a></li>
-                <li class="nav__li"><a> @Html.ActionLink("Productos", "ListAllProductos", "Producto")</a></li>
-                <li class="nav__li"><a>@Html.ActionLink("Carrito", "MostrarCarrito", "Carrito")</a></li>
-                @if (usuario.esAdmin && usuario != null)
-                {
-                    <li class="nav__li"><a>@Html.ActionLink("Admin", "Admin", "Admin")</a></li>
-                }
+        <ul class="nav__ul">
+            <li class="nav__li"><a>@Html.ActionLink("Inicio", "Index", "Home")</a></li>
+            <li class="nav__li"><a> @Html.ActionLink("Productos", "ListAllProductos", "Producto")</a></li>
+            <li class="nav__li"><a>@Html.ActionLink("Carrito", "MostrarCarrito", "Carrito")</a></li>
+            @if (usuario != null && usuario.esAdmin)
+            {
+                <li class="nav__li"><a>@Html.ActionLink("Admin", "Admin", "Admin")</a></li>
+            }
+            <li class="nav__li">@Html.ActionLink("Cliente", "DetalleCliente", "ClienteDatos")</li>
+
             <li class="nav__li">@Html.ActionLink("LogOut", "LogOut", "Login")</li>
 
-            </ul>
+        </ul>
 
             <i class='bx bx-shopping-bag bx-flip-horizontal'></i>
             @if (carrito != null)
@@ -68,7 +70,7 @@
                             <i class='bx bx-shopping-bag bx-flip-horizontal'></i>
                             <p style="color:#000 ;" class="nav__responsive-carrito">0</p>
                         </li>
-                        @if (usuario.esAdmin)
+                        @if (usuario != null && usuario.esAdmin)
                         {
                         <li class="nav__responsive-li"><a>@Html.ActionLink("Admin", "Admin", "Admin")</a></li>
                         }

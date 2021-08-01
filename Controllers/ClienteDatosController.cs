@@ -10,10 +10,25 @@ namespace SuperMerk2.Controllers
 {
     public class ClienteDatosController : Controller
     {
-        // GET: ClienteDatos
-        public ActionResult Index()
+        [HttpGet]
+        public ActionResult DetalleCliente()
         {
-            return View();
+            ClienteDatos c = new ClienteDatos();
+            DatosClienteBL biz = new DatosClienteBL();
+            var user = Session["UserSession"] as Usuario;
+            var cliente = biz.getDataCliente(user.username);
+            return View(cliente);
+        }
+
+        [HttpPost]
+        public ActionResult DetalleCliente(ClienteDatos cliente)
+        {            
+            DatosClienteBL biz = new DatosClienteBL();
+            var user = Session["UserSession"] as Usuario;
+            cliente.usuario = user;
+            biz.modificarDatosCliente(cliente);
+            Session["ClientSession"] = cliente;
+            return View(cliente);
         }
 
         // GET: ClienteDatos/Details/5

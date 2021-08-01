@@ -1,4 +1,5 @@
-﻿using SuperMerk2.Models;
+﻿using SuperMerk2.Business;
+using SuperMerk2.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,83 +10,83 @@ namespace SuperMerk2.Controllers
 {
     public class CarritoController : Controller
     {
-        // GET: Carrito
         public ActionResult MostrarCarrito()
         {
             var carrito = Session["Carrito"] as Carrito;
             return View(carrito);
         }
 
-        // GET: Carrito/Details/5
-        public ActionResult Details(int id)
+        public ActionResult ListaCarrito()
         {
-            return View();
-        }
-
-        // GET: Carrito/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Carrito/Create
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
+            Usuario usuario = Session["UserSession"] as Usuario;
+            if (usuario != null)
             {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
+                if (usuario.esAdmin)
+                {
+                    CarritoBL biz = new CarritoBL();                    
+                    var carrito = biz.GetAll();
+                    return View(carrito);
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home");
+                }
             }
-            catch
+            else
             {
-                return View();
+                return RedirectToAction("LogIn", "Login");
             }
+
         }
 
-        // GET: Carrito/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult ListaCarritoxCliente(string user)
         {
-            return View();
+            Usuario usuario = Session["UserSession"] as Usuario;
+            if (usuario != null)
+            {
+                if (usuario.esAdmin)
+                {
+                    DatosClienteBL bizcl = new DatosClienteBL();
+                    CarritoBL biz = new CarritoBL();
+                    var cliente = bizcl.getDataCliente(user);
+                    var carrito = biz.TraerCarritoCliente(cliente);
+                    return View(carrito);
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+            }
+            else
+            {
+                return RedirectToAction("LogIn", "Login");
+            }
+
         }
 
-        // POST: Carrito/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult ListarDetalleCarrito(int id)
         {
-            try
+            Usuario usuario = Session["UserSession"] as Usuario;
+            if (usuario != null)
             {
-                // TODO: Add update logic here
+                if (usuario.esAdmin)
+                {
+                    ProductoCarritoBL biz = new ProductoCarritoBL();
+                    var carrito = biz.getProductosCarritoFull(id);
+                    return View(carrito);
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+            }
+            else
+            {
+                return RedirectToAction("LogIn", "Login");
+            }
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
         }
 
-        // GET: Carrito/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
 
-        // POST: Carrito/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
     }
 }

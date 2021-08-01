@@ -50,6 +50,21 @@ namespace SuperMerk2.Business
             return null;
         }
 
+        public List<Carrito> GetAll()
+        {
+            var db = new Data.GenericDataRepository<Carrito>();
+            var carro = db.GetAll().ToList();
+            DatosClienteBL bizcl = new DatosClienteBL();
+            foreach(var carrito in carro)
+            {
+                var cliente = bizcl.getDataClientexid(carrito.clienteId);
+                carrito.clienteDatos = cliente;
+            }
+
+            return carro;
+        }
+
+
 
         //Agrega item al carrito
         public Carrito agregarItemCarrito(int idCarrito, int idProducto)

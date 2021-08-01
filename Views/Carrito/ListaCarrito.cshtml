@@ -1,0 +1,85 @@
+﻿@model IEnumerable<SuperMerk2.Models.Carrito>
+@using SuperMerk2.Models;
+@using SuperMerk2.Business;
+
+@{
+    ViewBag.Title = "ListarBitacora";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    UsuarioBL biz = new UsuarioBL();
+    var usuarios = biz.Listar();
+    string usuario = "";
+}
+@{
+    ViewBag.Title = "ListaCarrito";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="~/Content/Bitacora/Bitacora.css" rel="stylesheet" />
+    <link href="~/Content/Bitacora/Bitacora.css" rel="stylesheet" />
+
+    <title> Lista Carrito</title>
+</head>
+<body>
+
+<div class="dataTable-Container">
+    <table class="datatable">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.clienteDatos.username)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.finalizado)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            if (usuario != "")
+            {
+                if (item.clienteDatos.username == usuario)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayNameFor(model => model.clienteDatos.username)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.finalizado)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Details", "Details", new { id = item.carritoId })
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.clienteDatos.username)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.finalizado)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Detalle", "ListarDetalleCarrito", "Carrito", new { id = item.carritoId }, new { })
+                    </td>
+                </tr>
+            }
+
+        }
+    </table>
+    <form>
+        <input type="button" class="button" value="Create" onclick="location.href=' @Url.Action("DescargarXMLCarrito", "Archivo", new { username = TempData["UsuarioElegido"] })'" />
+    </form>
+    <div>
+        <p>
+            <a><i class='bx bx-arrow-back'></i> </i>@Html.ActionLink("Volver", "Admin", "Admin")</a>
+        </p>
+    </div>
+</div>
+</body>
+</html>
