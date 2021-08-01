@@ -64,8 +64,6 @@ namespace SuperMerk2.Business
             return carro;
         }
 
-
-
         //Agrega item al carrito
         public Carrito agregarItemCarrito(int idCarrito, int idProducto)
         {
