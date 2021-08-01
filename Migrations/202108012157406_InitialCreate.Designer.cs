@@ -13,7 +13,7 @@ namespace SuperMerk2.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "202108011946324_InitialCreate"; }
+            get { return "202108012157406_InitialCreate"; }
         }
         
         string IMigrationMetadata.Source

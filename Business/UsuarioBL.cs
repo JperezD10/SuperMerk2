@@ -23,6 +23,20 @@ namespace SuperMerk2.Business
             return resutlado;
         }
 
+        public void DesactivarUsuario(string username)
+        {
+            var db = new Data.GenericDataRepository<Usuario>();
+            Usuario user = Listar().Where(x => x.username == username).FirstOrDefault();
+            user.Habilitado = false;
+            db.Update(user, u => u.username == username);
+        }
+        public void HabilitarUsuario(string username)
+        {
+            var db = new Data.GenericDataRepository<Usuario>();
+            Usuario user = Listar().Where(x => x.username == username).FirstOrDefault();
+            user.Habilitado = true;
+            db.Update(user,u => u.username == username);
+        }
         public void EditUsuario(Usuario usuario, string username)
         {
             var db = new Data.GenericDataRepository<Usuario>();

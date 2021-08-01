@@ -18,5 +18,6 @@ namespace SuperMerk2.Models
         [DataType(DataType.Password)]
         public string password { get; set; }
         public bool esAdmin { get; set; }
+        public bool Habilitado { get; set; }
     }
 }

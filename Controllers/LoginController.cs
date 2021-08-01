@@ -20,8 +20,8 @@ namespace SuperMerk2.Controllers
         {
             if (ModelState.IsValid)
             {
-                Business.UsuarioBL g = new Business.UsuarioBL();
-                var usuarioSession = g.Listar().Where(u => u.username == user.username && u.password == user.password).FirstOrDefault();
+                UsuarioBL g = new UsuarioBL();
+                var usuarioSession = g.Listar().Where(u => u.username == user.username && u.password == user.password && u.Habilitado == true).FirstOrDefault();
 
                 if (usuarioSession != null)
                 {

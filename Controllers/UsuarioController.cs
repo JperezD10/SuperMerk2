@@ -42,13 +42,14 @@ namespace SuperMerk2.Controllers
         public ActionResult CreateUsuario(Usuario user)
         {
             UsuarioBL gestor = new UsuarioBL();
+            user.Habilitado = true;
             if (gestor.altaUsuario(user))
             {
                 Session["ErrorRegistro"] = null;
-                ClienteDatos cliente = new ClienteDatos();
-                cliente.usuario = user;
-                cliente.username = user.username;
-                new DatosClienteBL().altaDatosCliente(cliente);
+                //ClienteDatos cliente = new ClienteDatos();
+                //cliente.usuario = user;
+                //cliente.username = user.username;
+                //new DatosClienteBL().altaDatosCliente(cliente);
                 return RedirectToAction("LogIn", "Login");
             }
             else
@@ -61,6 +62,10 @@ namespace SuperMerk2.Controllers
         [HttpGet]
         public ActionResult EditUsuario(string username)
         {
+            if (Session["UserSession"] == null)
+            {
+                RedirectToAction("LogIn", "Login");
+            }
             UsuarioBL usuarioBL = new UsuarioBL();
             var usuario = usuarioBL.Listar().Where(u => u.username == username).FirstOrDefault();
             return View(usuario);
@@ -69,20 +74,16 @@ namespace SuperMerk2.Controllers
         [HttpPost]
         public ActionResult EditUsuario(Usuario usuario)
         {
+            Usuario user = Session["UserSession"] as Usuario;
             if (ModelState.IsValid)
             {
                 UsuarioBL usuarioBL = new UsuarioBL();
                 var usercompare = usuarioBL.Listar().Where(u => u.username == usuario.username).FirstOrDefault();
                 if (usercompare != null && usercompare.username == usuario.username)
                 {
-                    Session["UsernameExistente"] = "Ese nombre de usuario esta ocupado por otro usuario";
-                    return View();
-                }
-                else if (usercompare != null && usercompare.username != usuario.username)
-                {
                     Session["UsernameExistente"] = null;
                     usuarioBL.EditUsuario(usuario, usercompare.username);
-                    return RedirectToAction("ListUsuario");
+                    return RedirectToAction("Index","Home");
                 }
                 else
                 {
@@ -91,24 +92,67 @@ namespace SuperMerk2.Controllers
                 }
             }
             else
-                return View();
+                return View("EditUsuario", user);
         }
 
-        // GET: Usuario/Delete/5
-        public ActionResult Delete(int id)
+        [HttpGet]
+        public ActionResult EditUsuarioAdmin(string username)
         {
-            return View();
+            if (Session["UserSession"] == null)
+            {
+                RedirectToAction("LogIn", "Login");
+            }
+            UsuarioBL usuarioBL = new UsuarioBL();
+            var usuario = usuarioBL.Listar().Where(u => u.username == username).FirstOrDefault();
+            return View(usuario);
         }
 
-        // POST: Usuario/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult EditUsuarioAdmin(Usuario usuario)
         {
+            if (ModelState.IsValid)
+            {
+                UsuarioBL usuarioBL = new UsuarioBL();
+                var usercompare = usuarioBL.Listar().Where(u => u.username == usuario.username).FirstOrDefault();
+                if (usercompare != null)
+                {
+                    Session["UsernameExistente"] = null;
+                    usuarioBL.EditUsuario(usuario, usercompare.username);
+                    return RedirectToAction("ListUsuario");
+                }
+                else
+                {
+
+                    return RedirectToAction("ListUsuario");
+                }
+            }
+            else
+                return View("EditUsuario");
+        }
+
+
+        [HttpGet]
+        public ActionResult DesactivarUsuario(string user)
+        {
+            UsuarioBL usuarioBL = new UsuarioBL();
             try
             {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
+                usuarioBL.DesactivarUsuario(user);
+                return RedirectToAction("ListUsuario","Usuario");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+        [HttpGet]
+        public ActionResult HabilitarUsuario(string user)
+        {
+            UsuarioBL usuarioBL = new UsuarioBL();
+            try
+            {
+                usuarioBL.HabilitarUsuario(user);
+                return RedirectToAction("ListUsuario", "Usuario");
             }
             catch
             {
@@ -116,12 +160,6 @@ namespace SuperMerk2.Controllers
             }
         }
 
-        private void RedirectLogin()
-        {
-            if (Session["UserSession"]==null)
-            {
-                RedirectToAction("LogIn", "Login");
-            }
-        }
+
     }
 }

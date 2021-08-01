@@ -99,6 +99,7 @@ namespace SuperMerk2.Controllers
             if (ModelState.IsValid)
             {
                 ProductoBL biz = new ProductoBL();
+                product.Habilitado = true;
                 biz.altaProducto(product);
                 //Log Evento
                 new BitacoraController().RegistrarEvento(Session["UserSession"] as Usuario, "Creo un producto");

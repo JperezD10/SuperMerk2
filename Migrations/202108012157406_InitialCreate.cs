@@ -27,6 +27,7 @@ namespace SuperMerk2.Migrations
                         username = c.String(nullable: false, maxLength: 100),
                         password = c.String(nullable: false, maxLength: 100),
                         esAdmin = c.Boolean(nullable: false),
+                        Habilitado = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.username);
             

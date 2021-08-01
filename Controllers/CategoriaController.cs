@@ -42,7 +42,17 @@ namespace SuperMerk2.Controllers
         [HttpPost]
         public ActionResult CreateCategoria(Categoria cat)
         {
-            return View();
+            if (ModelState.IsValid)
+            {
+                CategoriaBL bizcat = new CategoriaBL();
+                bizcat.altaCategoria(cat);
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                return View();
+            }
+
         }
 
         [HttpGet]

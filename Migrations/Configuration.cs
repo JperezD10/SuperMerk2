@@ -34,7 +34,7 @@ namespace SuperMerk2.Migrations
                 context.SaveChanges();
 
                 //Productos
-                var productocarne1 = new Producto() { nombre = "Bife de Chorizo", descripcion = "El mejor bife de la zona", categoria = carni, stockDisponible = 20, precio = 600, Habilitado=true };
+                var productocarne1 = new Producto() { nombre = "Bife de Chorizo", descripcion = "El mejor bife de la zona", categoria = carni, stockDisponible = 20, precio = 600, Habilitado = true };
                 var productocarne2 = new Producto() { nombre = "Vacio", descripcion = "Ideal para la parrilla", categoria = carni, stockDisponible = 15, precio = 450, Habilitado = true };
                 var productoverdu1 = new Producto() { nombre = "Pera", descripcion = "Para el verano", categoria = verdu, stockDisponible = 0, precio = 35, Habilitado = true };
                 var productopostre1 = new Producto() { nombre = "Torta de Chocolate", descripcion = "Espectacular con el cafe", categoria = postre, stockDisponible = 5, precio = 500, Habilitado = true };
@@ -48,8 +48,8 @@ namespace SuperMerk2.Migrations
 
                 context.SaveChanges();
 
-                Usuario _userAdmin = new Usuario() { username = "admin", password = "admin", esAdmin = true };
-                Usuario _userNormal = new Usuario() { username = "karen", password = "1234", esAdmin = false };
+                Usuario _userAdmin = new Usuario() { username = "admin", password = "admin", esAdmin = true, Habilitado = true };
+                Usuario _userNormal = new Usuario() { username = "karen", password = "1234", esAdmin = false, Habilitado = true };
                 //Usuario
                 context.Usuarios.AddOrUpdate(x => x.username,
                     _userAdmin,

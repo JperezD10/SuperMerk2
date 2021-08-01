@@ -13,6 +13,14 @@ namespace SuperMerk2.Controllers
         [HttpGet]
         public ActionResult DetalleCliente()
         {
+            if (Session["ClientSession"] == null)
+            {
+                return RedirectToAction("CreateClienteData", "ClienteDatos");
+            }
+            if (Session["UserSession"] == null)
+            {
+                RedirectToAction("LogIn", "Login");
+            }
             ClienteDatos c = new ClienteDatos();
             DatosClienteBL biz = new DatosClienteBL();
             var user = Session["UserSession"] as Usuario;
@@ -40,6 +48,10 @@ namespace SuperMerk2.Controllers
         [HttpGet]
         public ActionResult CreateClienteData()
         {
+            if (Session["UserSession"] == null)
+            {
+                RedirectToAction("LogIn", "Login");
+            }
             ClienteDatos c = new ClienteDatos();
             var user = Session["UserSession"] as Usuario;
             c.username = user.username;

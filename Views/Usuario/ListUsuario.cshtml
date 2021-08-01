@@ -1,8 +1,9 @@
 ﻿@model IEnumerable<SuperMerk2.Models.Usuario>
-
+@using SuperMerk2.Models;
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var userSession = Session["UserSession"] as Usuario;
 }
 <!DOCTYPE html>
 <html>
@@ -34,8 +35,20 @@
                         @Html.DisplayFor(modelItem => item.esAdmin)
                     </td>
                     <td>
-                        @Html.ActionLink("Editar","EditUsuario", "Usuario", new { username = item.username }, new { }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.username }, new { })
+                        @Html.ActionLink("Editar", "EditUsuarioAdmin", "Usuario", new { username = item.username }, new { }) |
+
+                        @if (item.username != userSession.username)
+                        {
+                            if (item.Habilitado)
+                            {
+                                @Html.ActionLink("Desactivar", "DesactivarUsuario", "Usuario", new { user = item.username }, new { })
+                            }
+                            else
+                            {
+                                @Html.ActionLink("Reactivar", "HabilitarUsuario", "Usuario", new { user = item.username }, new { })
+                            }
+                        }
+
                     </td>
                 </tr>
             }

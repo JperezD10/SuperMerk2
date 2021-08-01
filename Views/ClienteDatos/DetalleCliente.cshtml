@@ -19,7 +19,7 @@
             @Html.HiddenFor(model => model.clienteId)
             <div class="Input">
                 @Html.LabelFor(model => model.username, htmlAttributes: new { @class = "form__label" })
-                @Html.EditorFor(model => model.username, new { htmlAttributes = new { @class = "form__input", placeholder = "", @readonly="readonly" } })
+                @Html.EditorFor(model => model.username, new { htmlAttributes = new { @class = "form__input", placeholder = "", @readonly = "readonly" } })
                 @Html.ValidationMessageFor(model => model.username, "", new { @class = "Error" })
             </div>
             <div class="Input">
@@ -42,9 +42,11 @@
                 @Html.EditorFor(model => model.mail, new { htmlAttributes = new { @class = "form__input", placeholder = "" } })
                 @Html.ValidationMessageFor(model => model.mail, "", new { @class = "Error" })
             </div>
+
             <input type="submit" value="Save" class="button" />
         </div>
     }
+    <input type="button" value="Modificar Contraseña" class="button" onclick="location.href='@Url.Action("EditUsuario","Usuario",new { username= Model.username})'" />
 
 </body>
 </html>

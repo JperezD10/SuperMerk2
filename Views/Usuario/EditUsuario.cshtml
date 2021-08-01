@@ -2,7 +2,8 @@
 
 @{
     ViewBag.Title = "EditUsuario";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";    
+
 }
 <!DOCTYPE html>
 <html>
@@ -13,29 +14,31 @@
 <body>
     @using (Html.BeginForm())
     {
-        <div class="form">
-            <hr />
-                @Html.HiddenFor(model => model.password)
-            <div class="Input">
-                @Html.LabelFor(model => model.username, htmlAttributes: new { @class = "form__label" })
-                @Html.EditorFor(model => model.username, new { htmlAttributes = new { @class = "form__input", placeholder = "", @readonly="readonly" } })
-                @if (Session["UsernameExistente"]!=null)
-                {
-                    <p>@Session["UsernameExistente"]</p>
-                }
-            </div>
-            <div class="input-checkbox">
-                @Html.LabelFor(model => model.esAdmin, htmlAttributes: new { @class = "" })
-                @Html.EditorFor(model => model.esAdmin, new { htmlAttributes = new { type = "checkbox" } })
-                @Html.ValidationMessageFor(model => model.esAdmin, "", new { @class = "Error" })
-            </div>
-            <input type="submit" value="Save" class="button" />
-        </div>
-    }
+    <div class="form">
+        <hr />
+        @Html.HiddenFor(model => model.Habilitado)
+        <div class="Input">
+            @Html.LabelFor(model => model.username, htmlAttributes: new { @class = "form__label" })
+            @Html.EditorFor(model => model.username, new { htmlAttributes = new { @class = "form__input", placeholder = "", @readonly = "readonly" } })
 
+        </div>
+        @Html.HiddenFor(model => model.esAdmin)
+        <div class="Input">
+            @Html.LabelFor(model => model.password, htmlAttributes: new { @class = "" })
+            @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "form__input" } })
+            @Html.ValidationMessageFor(model => model.password, "", new { @class = "Error" })
+        </div>
+        
+
+        <input type="submit" value="Save" class="button" />
+    </div>
+    }
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+            crossorigin="anonymous"></script>
     <div>
         <p>
-            <a><i class='bx bx-arrow-back'></i> </i>@Html.ActionLink("Volver", "ListUsuario", "Usuario")</a>
+            <a><i class='bx bx-arrow-back'></i> </i>@Html.ActionLink("Volver", "Index", "Home")</a>
         </p>
     </div>
 </body>

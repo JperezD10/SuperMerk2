@@ -190,9 +190,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202108011946324_InitialCreate.cs" />
-    <Compile Include="Migrations\202108011946324_InitialCreate.Designer.cs">
-      <DependentUpon>202108011946324_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\202108012157406_InitialCreate.cs" />
+    <Compile Include="Migrations\202108012157406_InitialCreate.Designer.cs">
+      <DependentUpon>202108012157406_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Bitacora.cs" />
@@ -300,6 +300,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <Content Include="Views\Usuario\EditUsuarioAdmin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
@@ -309,8 +310,8 @@
     <TypeScriptCompile Include="Scripts\TS\app.ts" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202108011946324_InitialCreate.resx">
-      <DependentUpon>202108011946324_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202108012157406_InitialCreate.resx">
+      <DependentUpon>202108012157406_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
