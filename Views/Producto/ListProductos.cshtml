@@ -3,6 +3,7 @@
 @{
     ViewBag.Title = "ListProductos";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    string Accion = "";
 }
 <!DOCTYPE html>
 <html>
@@ -60,9 +61,17 @@
                         @Html.DisplayFor(modelItem => item.precio)
                     </td>
                     <td>
-                        @Html.ActionLink("Editar", "EditProducto", "Producto",new { id = item.productoId },new {}) |
-                        @Html.ActionLink("Detalle","DetalleProducto", "Producto", new { id = item.productoId }, new { }) |
-                        @Html.ActionLink("Eliminar","EliminarProductos", "Producto", new { id = item.productoId }, new { })
+
+                        @Html.ActionLink("Editar", "EditProducto", "Producto", new { id = item.productoId }, new { }) |
+                        @Html.ActionLink("Detalle", "DetalleProducto", "Producto", new { id = item.productoId }, new { }) |
+                        @if (item.Habilitado)
+                        {
+                            @Html.ActionLink("Eliminar", "EliminarProductos", "Producto", new { id = item.productoId }, new { })
+                        }
+                        else
+                        {
+                            @Html.ActionLink("Reactivar", "ReactivarProductos", "Producto", new { id = item.productoId }, new { })
+                        }
                     </td>
                 </tr>
             }

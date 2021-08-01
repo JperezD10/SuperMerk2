@@ -163,6 +163,19 @@ namespace SuperMerk2.Controllers
             new BitacoraController().RegistrarEvento(Session["UserSession"] as Usuario, "Elimino un producto");
             return RedirectToAction("ListProductos", "Producto");
         }
+        [HttpGet]
+        public ActionResult ReactivarProductos(int id)
+        {
+            if (Session["UserSession"] == null)
+            {
+                return RedirectToAction("LogIn", "Login");
+            }
+            ProductoBL biz = new ProductoBL();
+            biz.ReactivarProducto(biz.getDataProducto(id));
+            //Log Evento
+            new BitacoraController().RegistrarEvento(Session["UserSession"] as Usuario, "Reactivo un producto");
+            return RedirectToAction("ListProductos", "Producto");
+        }
 
         [HttpGet]
         public ActionResult AddToCart(Producto product)

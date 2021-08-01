@@ -29,7 +29,12 @@ namespace SuperMerk2.Business
             prod.Habilitado = false;
             db.Update(prod, p => p.productoId == prod.productoId);
         }
-
+        public void ReactivarProducto(Producto prod)
+        {
+            var db = new Data.GenericDataRepository<Producto>();
+            prod.Habilitado = true;
+            db.Update(prod, p => p.productoId == prod.productoId);
+        }
         public List<Producto> getAll()
         {
             var db = new Data.GenericDataRepository<Producto>();
