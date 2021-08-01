@@ -66,21 +66,16 @@ namespace SuperMerk2.Controllers
             }
         }
 
-        // GET: Carrito/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
         // POST: Carrito/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        [HttpGet]
+        public ActionResult EliminarProducto(int carrito, int productoEliminar)
         {
             try
             {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
+                Business.CarritoBL c = new Business.CarritoBL();
+                var carritoActualziado = c.borrarItemCarrito(carrito, productoEliminar);
+                Session["Carrito"] = carritoActualziado;
+                return View("MostrarCarrito", carritoActualziado);
             }
             catch
             {

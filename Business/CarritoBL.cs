@@ -58,6 +58,7 @@ namespace SuperMerk2.Business
             Producto prod = new ProductoBL().getDataProducto(idProducto);
             //Creo el objeto ProductodeCarrito para agregarlo al carrito
             ProductoDeCarrito proCarrito = new ProductoDeCarrito();
+            proCarrito.cantidadItems = 1;
             proCarrito.carritoId = idCarrito;
             proCarrito.productoId = prod.productoId;
             //Lo registro en EF
@@ -71,12 +72,8 @@ namespace SuperMerk2.Business
         //Borrar item del carrito
         public Carrito borrarItemCarrito(int idCarrito, int idProductodeCarrito)
         {
-            //Busco el producto
-            Producto prod = new ProductoBL().getDataProducto(idProductodeCarrito);
             //Creo el objeto ProductodeCarrito para agregarlo al carrito
             ProductoDeCarrito proCarrito = new ProductoCarritoBL().getDataProductoCarrito(idProductodeCarrito);
-            proCarrito.producto = prod;
-            proCarrito.productoId = prod.productoId;
             proCarrito.carritoId = idCarrito;
             //Lo registro en EF
             new ProductoCarritoBL().borrarProdACarrito(proCarrito);
