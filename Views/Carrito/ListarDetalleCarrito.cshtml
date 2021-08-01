@@ -1,0 +1,46 @@
+﻿@model IEnumerable<SuperMerk2.Models.ProductoDeCarrito>
+
+@{
+    ViewBag.Title = "ListarDetalleCarrito";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="~/Content/Bitacora/Bitacora.css" rel="stylesheet" />
+    <title> Lista Bitacora</title>
+</head>
+<body>
+    <div class="dataTable-Container">
+        <table class="datatable">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.producto.nombre)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.cantidadItems)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.producto.nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.cantidadItems)
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+    <div>
+        <p>
+            <a><i class='bx bx-arrow-back'></i> </i>@Html.ActionLink("Volver", "ListaCarrito", "Carrito")</a>
+        </p>
+    </div>
+</body>
+</html>

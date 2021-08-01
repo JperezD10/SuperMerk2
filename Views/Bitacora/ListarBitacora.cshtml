@@ -20,52 +20,40 @@
 <body>
     @using (Html.BeginForm("ListarBitacoraPorUsuario", "Bitacora"))
     {
-        <select id="filtro" name="filtro">
-            @foreach (var user in usuarios)
-            {
-                <option>@user.username</option>
-            }
-        </select>
-        <input type="submit" value="search" class="button" />
+        <div class="select-username">
+            <select id="filtro" name="filtro">
+                @foreach (var user in usuarios)
+                {
+                    <option>@user.username</option>
+                }
+            </select>
+            <input type="submit" value="search" class="button" />
+        </div>
+
     }
 
 
 
-    <div class="dataTable-Container">
-        <table class="datatable">
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.username)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.descripcion)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.fechaHora)
+<div class="dataTable-Container">
+    <table class="datatable">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.username)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.descripcion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fechaHora)
 
-                </th>
-            </tr>
+            </th>
+        </tr>
 
-            @foreach (var item in Model)
+        @foreach (var item in Model)
+        {
+            if (usuario != "")
             {
-                if (usuario != "")
-                {
-                    if (item.username == usuario)
-                    {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.username)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.descripcion)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.fechaHora)
-                            </td>
-                        </tr>
-                    }
-                }
-                else
+                if (item.username == usuario)
                 {
                     <tr>
                         <td>
@@ -79,9 +67,28 @@
                         </td>
                     </tr>
                 }
-
             }
-        </table>
-    </div>
+            else
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.username)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.descripcion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.fechaHora)
+                    </td>
+                </tr>
+            }
+
+        }
+    </table>
+    <form>
+        <input type="button" class="button" value="Create" onclick="location.href=' @Url.Action("DescargarXMLBitacora", "Archivo", new { username = TempData["UsuarioElegido"] })'" />
+    </form>
+
+</div>
 </body>
 </html>

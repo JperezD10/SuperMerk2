@@ -13,18 +13,51 @@ namespace SuperMerk2.Controllers
         // GET: Bitacora
         public ActionResult ListarBitacora()
         {
-            RedirectLogin();
-            BitacoraBL biz = new BitacoraBL();
-            var bitacora = biz.traerBitacoraCompleta();
-            return View(bitacora);
+            Usuario usuario = Session["UserSession"] as Usuario;
+            if (usuario != null)
+            {
+                if (usuario.esAdmin)
+                {           
+                    RedirectLogin();
+                    BitacoraBL biz = new BitacoraBL();
+                    var bitacora = biz.traerBitacoraCompleta();
+                   return View(bitacora);
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+            }
+            else
+            {
+                return RedirectToAction("LogIn", "Login");
+            }
+
         }
         [HttpPost]
         public ActionResult ListarBitacoraPorUsuario(string filtro)
         {
-            BitacoraBL biz = new BitacoraBL();
-            var bitacora = biz.traerBitacoraUsuario(filtro);
+            Usuario usuario = Session["UserSession"] as Usuario;
+            if (usuario != null)
+            {
+                if (usuario.esAdmin)
+                {            
+                    BitacoraBL biz = new BitacoraBL();
+                    var bitacora = biz.traerBitacoraUsuario(filtro);
+                    TempData["UsuarioElegido"] = filtro;
+                    TempData.Keep();
+                    return PartialView("ListarBitacora", bitacora);
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+            }
+            else
+            {
+                return RedirectToAction("LogIn", "Login");
+            }
 
-            return PartialView("ListarBitacora", bitacora);
         }
 
 

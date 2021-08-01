@@ -12,21 +12,14 @@ namespace SuperMerk2.Business
 {
     public class ArchivosBL
     {
-        public string serializarAXML<T>(T item)
+        public void serializarAXML<T>(T item, Stream salida)
         {
             XmlSerializer xsSubmit = new XmlSerializer(item.GetType());
-            var xml = "";
 
             using (var sww = new StringWriter())
             {
-                using (XmlWriter writer = XmlWriter.Create(sww))
-                {
-                    xsSubmit.Serialize(writer, item);
-                    xml = sww.ToString(); // Your XML
-                }
+                xsSubmit.Serialize(salida, item);
             }
-
-            return xml;
         }
     }
 }

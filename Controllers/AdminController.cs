@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SuperMerk2.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,16 +12,23 @@ namespace SuperMerk2.Controllers
         // GET: Admin
         public ActionResult Admin()
         {
-            RedirectLogin();
-            return View();
-        }
-
-        private void RedirectLogin()
-        {
-            if (Session["UserSession"] == null)
+            Usuario usuario = Session["UserSession"] as Usuario;
+            if (usuario != null)
             {
-                RedirectToAction("LogIn", "Login");
+                if (usuario.esAdmin)
+                {
+                    return View();
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home");
+                }
             }
+            else
+            {
+                return RedirectToAction("LogIn", "Login");
+            }
+            
         }
     }
 }
