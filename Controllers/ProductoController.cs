@@ -181,8 +181,16 @@ namespace SuperMerk2.Controllers
             if(Session["Carrito"] != null)
             {
                 carritocompra = Session["Carrito"] as Carrito;
-                cart.agregarItemCarrito(carritocompra.carritoId, product.productoId);
-                Session["Carrito"] = cart.getDataCarritoFull(carritocompra.carritoId);
+                int cantidadProductoCarrito = carritocompra.listaProductosCarrito.Where(p => p.productoId == product.productoId).Count();
+                if(product.stockDisponible == cantidadProductoCarrito)
+                {
+                    return RedirectToAction("ListProductosxCategory","Producto", new { id = product.categoriaId });
+                }
+                else
+                {
+                    cart.agregarItemCarrito(carritocompra.carritoId, product.productoId);
+                    Session["Carrito"] = cart.getDataCarritoFull(carritocompra.carritoId);
+                }
 
             }
             else

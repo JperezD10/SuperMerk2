@@ -3,13 +3,90 @@
 @{
     ViewBag.Title = "MostrarCarrito";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    double total = 0;
 }
 
 <!DOCTYPE html>
 <html>
 <head>
     <link href="~/Content/Bitacora/Bitacora.css" rel="stylesheet" />
+    <script src="~/Scripts/TS/app.js"></script>
     <title> Lista Bitacora</title>
+    <style>
+        .button {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50, -50);
+        }
+
+        .button {
+            background: none;
+            color: #000;
+            width: 176px;
+            height: 45px;
+            border: 1px solid #338033;
+            font-size: 18px;
+            border-radius: 4px;
+            transition: .6s;
+            overflow: hidden;
+            margin-top: 21px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #000;
+            font-size: 20px;
+        }
+
+        .button:focus {
+            outline: none;
+        }
+
+        .button:before {
+            content: '';
+            display: block;
+            background: rgb(140,198,63);
+            width: 60px;
+            height: 100%;
+            left: 0;
+            top: 0;
+            opacity: .5;
+            filter: blur(30px);
+            transform: translateX(-130px) skewX(-15deg);
+        }
+
+        .button:after {
+            content: '';
+            display: block;
+            position: absolute;
+            background: rgba(255,255,255,.2);
+            width: 30px;
+            height: 100%;
+            left: 30px;
+            top: 0;
+            opacity: 0;
+            filter: blur(30px);
+            transform: translateX(-100px) scaleX(-15deg);
+        }
+
+        .button:hover {
+            background: rgb(140,198,63);
+            cursor: pointer;
+        }
+
+            .button:hover:before {
+                transform: translateX(300px) skewX(-15deg);
+                opacity: .6;
+                transition: .7s;
+            }
+
+            .button:hover:after {
+                transform: translateX(300px) skewX(-15deg);
+                opacity: 1;
+                transition: .7s;
+            }
+
+    </style>
 </head>
 <body>
     <div class="dataTable-Container">
@@ -20,38 +97,46 @@
         }
         else
         {
-            <table class="datatable">
-                <tr>
-                    <th>
-                        <label>Categoria</label>
-                    </th>
-                    <th>
-                        <label>Producto</label>
-                    </th>
-                    <th>
-                        <label>Cantidad</label>
-                    </th>
-                </tr>
-
-                @foreach (var item in Model.listaProductosCarrito)
-                {
+            @Html.BeginForm()
+            {
+                <table class="datatable">
                     <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.producto.categoria.nombreCategoria)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.producto.nombre)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.cantidadItems)
-                        </td>
+                        <th>
+                            <label>Categoria</label>
+                        </th>
+                        <th>
+                            <label>Producto</label>
+                        </th>
+                        <th>
+                            <label>Precio Unitario</label>
+                        </th>
+                        <th></th>
                     </tr>
-                }
+
+                    @foreach (var item in Model.listaProductosCarrito)
+                    {
+                        total += item.producto.precio;
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.producto.categoria.nombreCategoria)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.producto.nombre)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.producto.precio)
+                            </td>
+                            <th>@Html.ActionLink("Eliminar", "EliminarProducto", "Carrito", new { carrito= item.carritoId, productoEliminar = item.itemCarritoId }, new { })</th>
+                        </tr>
+                    }
 
 
-            </table>
+                </table>
+            }
         }
-
+        <button type="button" onclick="mostrarComprar()">Mostrar total</button>
+        <p id="Precio" style="display:none">Total: $@total</p>
     </div>
+    <input class="button" type="button" value="check out">
 </body>
 </html>
