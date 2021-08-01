@@ -13,6 +13,10 @@ namespace SuperMerk2.Controllers
         [HttpGet]
         public ActionResult ListAllProductos()
         {
+            if (Session["UserSession"] == null)
+            {
+                RedirectToAction("LogIn", "Login");
+            }
             ProductoBL biz = new ProductoBL();
             var product = biz.getAll();
             return View(product);
@@ -20,18 +24,30 @@ namespace SuperMerk2.Controllers
         [HttpGet]
         public ActionResult ListProductos()
         {
-            if (Session["UserSession"] == null)
+            Usuario usuario = Session["UserSession"] as Usuario;
+            if (usuario != null)
+            {
+                if (usuario.esAdmin)
+                {
+                    ProductoBL biz = new ProductoBL();
+                    var product = biz.getAll();
+                    CategoriaBL bL = new CategoriaBL();
+                    foreach (var p in product)
+                    {
+                        p.categoria = bL.GetAll().Where(c => c.categoriaId == p.categoriaId).FirstOrDefault();
+                    }
+                    return View(product);
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+            }
+            else
             {
                 return RedirectToAction("LogIn", "Login");
             }
-            ProductoBL biz = new ProductoBL();
-            var product = biz.getAll();
-            Business.CategoriaBL bL = new CategoriaBL();
-            foreach (var p in product)
-            {
-                p.categoria = bL.GetAll().Where(c => c.categoriaId == p.categoriaId).FirstOrDefault();
-            }
-            return View(product);
+
         }
         [HttpGet]
         public ActionResult ListProductosxCategory(int id)
@@ -60,7 +76,22 @@ namespace SuperMerk2.Controllers
         [HttpGet]
         public ActionResult CreateProducto()
         {
-            return View();
+            Usuario usuario = Session["UserSession"] as Usuario;
+            if (usuario != null)
+            {
+                if (usuario.esAdmin)
+                {
+                    return View();
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+            }
+            else
+            {
+                return RedirectToAction("LogIn", "Login");
+            }            
         }
         [HttpPost]
         public ActionResult CreateProducto(Producto product)
@@ -70,7 +101,7 @@ namespace SuperMerk2.Controllers
                 ProductoBL biz = new ProductoBL();
                 biz.altaProducto(product);
                 //Log Evento
-                //new BitacoraController().RegistrarEvento(Session["UserSession"] as Usuario, "Creo un producto");
+                new BitacoraController().RegistrarEvento(Session["UserSession"] as Usuario, "Creo un producto");
                 return RedirectToAction("ListProductos");
             }
             else
@@ -99,7 +130,7 @@ namespace SuperMerk2.Controllers
                 ProductoBL biz = new ProductoBL();
                 biz.modificarProducto(product);
                 //Log Evento
-                //new BitacoraController().RegistrarEvento(Session["UserSession"] as Usuario, "Modifico un producto");
+                new BitacoraController().RegistrarEvento(Session["UserSession"] as Usuario, "Modifico un producto");
                 return RedirectToAction("ListProductos", "Producto");
             }
             else

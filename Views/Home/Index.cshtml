@@ -8,29 +8,38 @@
 </head>
 <body>
     <div class="categorias">
-        @foreach (var item in Model)
+        @if (Model.Count() == 0)
         {
-            <a href="@Url.Action("ListProductosxCategory", "Producto", new { id=item.categoriaId})">
-                <div class="cards">
-                    <div class="card card1">
-                        <div class="cards__container">
-                            @if (item.imagen == null)
-                            {
-                                <img alt="Vegetales" src="http://redlich.cl/imagen/sin_imagen.png" />
-                            }
-                            <img alt="Vegetales" src="@item.imagen" />
+            <h3>No hay categorias cargadas</h3>
+            <img height="250" width="250" src="~/Content/Imagenes/Tomate_Triste.png" />
+        }
+        else
+        {
+            foreach (var item in Model)
+            {
+                <a href="@Url.Action("ListProductosxCategory", "Producto", new { id=item.categoriaId})">
+                    <div class="cards">
+                        <div class="card card1">
+                            <div class="cards__container">
+                                @if (item.imagen == null)
+                                {
+                                    <img alt="Vegetales" src="http://redlich.cl/imagen/sin_imagen.png" />
+                                }
+                                <img alt="Vegetales" src="@item.imagen" />
 
-                        </div>
-                        <div class="details">
-                            <h3>@item.nombreCategoria</h3>
-                            <p>@item.descripcion</p>
+                            </div>
+                            <div class="details">
+                                <h3>@item.nombreCategoria</h3>
+                                <p>@item.descripcion</p>
 
+                            </div>
                         </div>
                     </div>
-                </div>
-            </a>
+                </a>
 
+            }
         }
+
     </div>
 </body>
 

@@ -11,10 +11,25 @@ namespace SuperMerk2.Controllers
         [HttpGet]
         public ActionResult ListUsuario()
         {
-            RedirectLogin();
-            UsuarioBL biz = new UsuarioBL();
-            var user = biz.Listar();
-            return View(user);
+            Usuario usuario = Session["UserSession"] as Usuario;
+            if (usuario != null)
+            {
+                if (usuario.esAdmin)
+                {
+                    UsuarioBL biz = new UsuarioBL();
+                    var user = biz.Listar();
+                    return View(user);
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+            }
+            else
+            {
+                return RedirectToAction("LogIn", "Login");
+            }
+
         }
 
         [HttpGet]

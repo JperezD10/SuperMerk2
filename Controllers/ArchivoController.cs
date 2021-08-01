@@ -10,27 +10,28 @@ namespace SuperMerk2.Controllers
 {
     public class ArchivoController : Controller
     {
-        // GET: Carrito
+        [HttpGet]
         public void DescargarXMLCarrito(int idCarrito)
         {
-            {
-                Carrito carrito = new CarritoBL().getDataCarritoFull(idCarrito);
+            ArchivosBL archivo = new ArchivosBL();
+            Carrito carrito = new CarritoBL().getDataCarritoFull(idCarrito);
 
-                Response.ClearContent();
-                Response.Buffer = true;
-                Response.AddHeader("content-disposition", "attachment; filename = carrito.xml");
-    
-                Response.ContentType = "text/xml";
+            Response.ClearContent();
+            Response.Buffer = true;
+            Response.AddHeader("content-disposition", "attachment; filename = carrito.xml");
 
-                var serializer = new System.Xml.Serialization.XmlSerializer(carrito.GetType());
-                serializer.Serialize(Response.OutputStream, carrito);
-            }
+            Response.ContentType = "text/xml";
+
+            archivo.serializarAXML(carrito, Response.OutputStream);
+            Response.End();
         }
 
-        // GET: Bitacora
+        [HttpGet]
         public void DescargarXMLBitacora(string username)
         {
+            if(username != null)
             {
+                ArchivosBL archivo = new ArchivosBL();
                 List<Bitacora> bitacora = new BitacoraBL().traerBitacoraUsuario(username);
 
                 Response.ClearContent();
@@ -39,17 +40,24 @@ namespace SuperMerk2.Controllers
 
                 Response.ContentType = "text/xml";
 
-                var serializer = new System.Xml.Serialization.XmlSerializer(bitacora.GetType());
-                serializer.Serialize(Response.OutputStream, bitacora);
+                archivo.serializarAXML(bitacora, Response.OutputStream);
+                Response.End();
             }
-        }
-
-        private void RedirectLogin()
-        {
-            if (Session["UserSession"] == null)
+            else
             {
-                RedirectToAction("LogIn", "Login");
+                ArchivosBL archivo = new ArchivosBL();
+                List<Bitacora> bitacora = new BitacoraBL().traerBitacoraCompleta();
+
+                Response.ClearContent();
+                Response.Buffer = true;
+                Response.AddHeader("content-disposition", "attachment; filename = bitacora.xml");
+
+                Response.ContentType = "text/xml";
+
+                archivo.serializarAXML(bitacora, Response.OutputStream);
+                Response.End();
             }
+
         }
     }
 }

@@ -1,0 +1,50 @@
+﻿@model SuperMerk2.Models.ClienteDatos
+
+@{
+    ViewBag.Title = "DetalleCliente";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="~/Content/Producto/Create-EditProducto.css" rel="stylesheet" />
+    <title>Edit Usuario</title>
+</head>
+<body>
+    @using (Html.BeginForm())
+    {
+        <div class="form">
+            <hr />
+            @Html.HiddenFor(model => model.clienteId)
+            <div class="Input">
+                @Html.LabelFor(model => model.username, htmlAttributes: new { @class = "form__label" })
+                @Html.EditorFor(model => model.username, new { htmlAttributes = new { @class = "form__input", placeholder = "", @readonly="readonly" } })
+                @Html.ValidationMessageFor(model => model.username, "", new { @class = "Error" })
+            </div>
+            <div class="Input">
+                @Html.LabelFor(model => model.nombreCliente, htmlAttributes: new { @class = "form__label" })
+                @Html.EditorFor(model => model.nombreCliente, new { htmlAttributes = new { @class = "form__input", placeholder = "" } })
+                @Html.ValidationMessageFor(model => model.nombreCliente, "", new { @class = "Error" })
+            </div>
+            <div class="Input">
+                @Html.LabelFor(model => model.apellidoCliente, htmlAttributes: new { @class = "form__label" })
+                @Html.EditorFor(model => model.apellidoCliente, new { htmlAttributes = new { @class = "form__input", placeholder = "" } })
+                @Html.ValidationMessageFor(model => model.apellidoCliente, "", new { @class = "Error" })
+            </div>
+            <div class="Input">
+                @Html.LabelFor(model => model.numeroDoc, htmlAttributes: new { @class = "form__label" })
+                @Html.EditorFor(model => model.numeroDoc, new { htmlAttributes = new { @class = "form__input", placeholder = "" } })
+                @Html.ValidationMessageFor(model => model.numeroDoc, "", new { @class = "Error" })
+            </div>
+            <div class="Input">
+                @Html.LabelFor(model => model.mail, htmlAttributes: new { @class = "form__label" })
+                @Html.EditorFor(model => model.mail, new { htmlAttributes = new { @class = "form__input", placeholder = "" } })
+                @Html.ValidationMessageFor(model => model.mail, "", new { @class = "Error" })
+            </div>
+            <input type="submit" value="Save" class="button" />
+        </div>
+    }
+
+</body>
+</html>

@@ -7,18 +7,13 @@ namespace SuperMerk2.Controllers
     {
         public ActionResult Index()
         {
-            RedirectLogin();
-            CategoriaBL biz = new CategoriaBL();
-            var product = biz.GetAll();
-            return View(product);
-        }
-
-        private void RedirectLogin()
-        {
             if (Session["UserSession"] == null)
             {
                 RedirectToAction("LogIn", "Login");
             }
+            CategoriaBL biz = new CategoriaBL();
+            var product = biz.GetAll();
+            return View(product);
         }
     }
 }
