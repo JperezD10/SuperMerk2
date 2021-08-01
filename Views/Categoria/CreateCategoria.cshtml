@@ -13,28 +13,38 @@
 <body>
     @using (Html.BeginForm())
     {
-        <div class="form">
-            <hr />
-            <div class="Input">
-                @Html.LabelFor(model => model.nombreCategoria, htmlAttributes: new { @class = "form__label" })
-                @Html.EditorFor(model => model.nombreCategoria, new { htmlAttributes = new { @class = "form__input", placeholder = "" } })
-                @Html.ValidationMessageFor(model => model.nombreCategoria, "", new { @class = "Error" })
-            </div>
-            <div class="Input">
-                @Html.LabelFor(model => model.descripcion, htmlAttributes: new { @class = "form__label" })
-                @Html.EditorFor(model => model.descripcion, new { htmlAttributes = new { @class = "form__input", placeholder = "" } })
-                @Html.ValidationMessageFor(model => model.descripcion, "", new { @class = "Error" })
-            </div>
-            <div class="Input">
-                @Html.LabelFor(model => model.imagen, htmlAttributes: new { @class = "form__label" })
-                @Html.EditorFor(model => model.imagen, new { htmlAttributes = new { @class = "form__input", placeholder = "" } })
-                @Html.ValidationMessageFor(model => model.imagen, "", new { @class = "Error" })
-            </div>
-
-            <input type="submit" value="Save" class="button" />
+    <div class="form">
+        <hr />
+        <div class="Input">
+            @Html.LabelFor(model => model.nombreCategoria, htmlAttributes: new { @class = "form__label" })
+            @Html.EditorFor(model => model.nombreCategoria, new { htmlAttributes = new { @class = "form__input", placeholder = "" } })
+            @Html.ValidationMessageFor(model => model.nombreCategoria, "", new { @class = "Error" })
         </div>
-    }
+        <div class="Input">
+            @Html.LabelFor(model => model.descripcion, htmlAttributes: new { @class = "form__label" })
+            @Html.EditorFor(model => model.descripcion, new { htmlAttributes = new { @class = "form__input", placeholder = "" } })
+            @Html.ValidationMessageFor(model => model.descripcion, "", new { @class = "Error" })
+        </div>
+        <div class="Input">
+            @Html.LabelFor(model => model.imagen, htmlAttributes: new { @class = "form__label" })
+            @Html.EditorFor(model => model.imagen, new { htmlAttributes = new { @class = "form__input", placeholder = "", id = "ImagenUrl" } })
+            @Html.ValidationMessageFor(model => model.imagen, "", new { @class = "Error" })
+        </div>
+        <img id="ImagenPreview" />
 
+        <input type="submit" value="Save" class="button" />
+    </div>
+    }
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+            crossorigin="anonymous"></script>
+    <script>
+        $('#ImagenUrl').change(function () {
+            let img = $("#ImagenUrl").val();
+            $("#ImagenPreview").attr("src", img);
+            $("#ImagenPreview").css("display", "block");
+        })
+    </script>
 </body>
 </html>
 <div>

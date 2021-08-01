@@ -18,13 +18,20 @@ namespace SuperMerk2.Controllers
             var bitacora = biz.traerBitacoraCompleta();
             return View(bitacora);
         }
-
-        public ActionResult ListarBitacoraPorUsuario(Usuario user)
+        [HttpPost]
+        public ActionResult ListarBitacoraPorUsuario(string filtro)
         {
-            RedirectLogin();
             BitacoraBL biz = new BitacoraBL();
-            var bitacora = biz.traerBitacoraUsuario(user.username);
-            return View(bitacora);
+            var bitacora = biz.traerBitacoraUsuario(filtro);
+
+            return PartialView("ListarBitacora", bitacora);
+        }
+
+
+        public void RegistrarEvento(Usuario user, string descripcion)
+        {
+            BitacoraBL biz = new BitacoraBL();
+            biz.registrarEvento(user, descripcion);
         }
 
         private void RedirectLogin()

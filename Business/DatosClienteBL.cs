@@ -25,7 +25,18 @@ namespace SuperMerk2.Business
         public ClienteDatos getDataCliente(string username)
         {
             var db = new Data.GenericDataRepository<ClienteDatos>();
-            return db.GetSingle(x => x.username == username);
+            ClienteDatos cliente = db.GetSingle(x => x.username == username);
+            if(cliente == null)
+            {
+                return null;
+            }
+            else
+            {
+                var db2 = new Data.GenericDataRepository<Usuario>();
+                cliente.usuario = db2.GetSingle(x => x.username == cliente.username);
+                return cliente;
+            }
+
         }
     }
 }

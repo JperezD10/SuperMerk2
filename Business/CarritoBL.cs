@@ -43,8 +43,10 @@ namespace SuperMerk2.Business
         }
 
         //Crear carrito vacio
-        public Carrito crearCarrito(int idCliente)
+        public Carrito crearCarrito(Carrito car)
         {
+            var db = new Data.GenericDataRepository<Carrito>();
+            db.Add(car);
             return null;
         }
 
@@ -56,7 +58,7 @@ namespace SuperMerk2.Business
             Producto prod = new ProductoBL().getDataProducto(idProducto);
             //Creo el objeto ProductodeCarrito para agregarlo al carrito
             ProductoDeCarrito proCarrito = new ProductoDeCarrito();
-            proCarrito.producto = prod;
+            proCarrito.carritoId = idCarrito;
             proCarrito.productoId = prod.productoId;
             //Lo registro en EF
             new ProductoCarritoBL().agregarProdACarrito(proCarrito);
@@ -100,6 +102,13 @@ namespace SuperMerk2.Business
             Carrito carrito = getDataCarrito(idCarrito);
             carrito.listaProductosCarrito = new ProductoCarritoBL().getProductosCarritoFull(carrito.carritoId);
             return carrito;
+        }
+
+        public Carrito TraerCarritoCliente(ClienteDatos client)
+        {
+            var db = new Data.GenericDataRepository<Carrito>();
+            Carrito car = db.GetList(x => x.clienteDatos.clienteId == client.clienteId).First();
+            return car;
         }
     }
 }

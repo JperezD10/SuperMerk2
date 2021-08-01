@@ -150,3 +150,12 @@ a {
         opacity: 1;
         transition: .7s;
     }
+
+
+#ImagenPreview {
+    display: none;
+    height: 400px;
+    width: 400px;
+    border: solid 1px #000;
+    object-fit: cover;
+}

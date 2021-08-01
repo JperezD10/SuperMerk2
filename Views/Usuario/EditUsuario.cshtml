@@ -18,8 +18,7 @@
                 @Html.HiddenFor(model => model.password)
             <div class="Input">
                 @Html.LabelFor(model => model.username, htmlAttributes: new { @class = "form__label" })
-                @Html.EditorFor(model => model.username, new { htmlAttributes = new { @class = "form__input", placeholder = "" } })
-                @Html.ValidationMessageFor(model => model.username, "", new { @class = "Error" })
+                @Html.EditorFor(model => model.username, new { htmlAttributes = new { @class = "form__input", placeholder = "", @readonly="readonly" } })
                 @if (Session["UsernameExistente"]!=null)
                 {
                     <p>@Session["UsernameExistente"]</p>

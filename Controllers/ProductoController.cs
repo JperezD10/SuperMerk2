@@ -13,7 +13,6 @@ namespace SuperMerk2.Controllers
         [HttpGet]
         public ActionResult ListAllProductos()
         {
-            RedirectLogin();
             ProductoBL biz = new ProductoBL();
             var product = biz.getAll();
             return View(product);
@@ -21,7 +20,10 @@ namespace SuperMerk2.Controllers
         [HttpGet]
         public ActionResult ListProductos()
         {
-            RedirectLogin();
+            if (Session["UserSession"] == null)
+            {
+                return RedirectToAction("LogIn", "Login");
+            }
             ProductoBL biz = new ProductoBL();
             var product = biz.getAll();
             Business.CategoriaBL bL = new CategoriaBL();
@@ -34,7 +36,10 @@ namespace SuperMerk2.Controllers
         [HttpGet]
         public ActionResult ListProductosxCategory(int id)
         {
-            RedirectLogin();
+            if (Session["UserSession"] == null)
+            {
+                return RedirectToAction("LogIn", "Login");
+            }
             ProductoBL biz = new ProductoBL();
             var product = biz.getProductosPorCategoria(id);
             return View("ListAllProductos", product);
@@ -43,7 +48,10 @@ namespace SuperMerk2.Controllers
         [HttpGet]
         public ActionResult DetalleProducto(int id)
         {
-            RedirectLogin();
+            if (Session["UserSession"] == null)
+            {
+                return RedirectToAction("LogIn", "Login");
+            }
             ProductoBL biz = new ProductoBL();
             var product = biz.getDataProducto(id);
             return View(product);
@@ -61,6 +69,8 @@ namespace SuperMerk2.Controllers
             {
                 ProductoBL biz = new ProductoBL();
                 biz.altaProducto(product);
+                //Log Evento
+                //new BitacoraController().RegistrarEvento(Session["UserSession"] as Usuario, "Creo un producto");
                 return RedirectToAction("ListProductos");
             }
             else
@@ -73,7 +83,10 @@ namespace SuperMerk2.Controllers
         [HttpGet]
         public ActionResult EditProducto(int id)
         {
-            RedirectLogin();
+            if (Session["UserSession"] == null)
+            {
+                return RedirectToAction("LogIn", "Login");
+            }
             ProductoBL biz = new ProductoBL();
             var producto = biz.getDataProducto(id);
             return View(producto);
@@ -85,6 +98,8 @@ namespace SuperMerk2.Controllers
             { 
                 ProductoBL biz = new ProductoBL();
                 biz.modificarProducto(product);
+                //Log Evento
+                //new BitacoraController().RegistrarEvento(Session["UserSession"] as Usuario, "Modifico un producto");
                 return RedirectToAction("ListProductos", "Producto");
             }
             else
@@ -96,7 +111,10 @@ namespace SuperMerk2.Controllers
         [HttpGet]
         public ActionResult ProductosCategoria(int id)
         {
-            RedirectLogin();
+            if (Session["UserSession"] == null)
+            {
+                return RedirectToAction("LogIn", "Login");
+            }
             ProductoBL biz = new ProductoBL();
             var product = biz.getProductosPorCategoria(id);
             return View(product);
@@ -104,26 +122,47 @@ namespace SuperMerk2.Controllers
         [HttpGet]
         public ActionResult EliminarProductos(int id)
         {
-            RedirectLogin();
+            if (Session["UserSession"] == null)
+            {
+                return RedirectToAction("LogIn", "Login");
+            }
             ProductoBL biz = new ProductoBL();
             biz.eliminarProducto(biz.getDataProducto(id));
+            //Log Evento
+            new BitacoraController().RegistrarEvento(Session["UserSession"] as Usuario, "Elimino un producto");
             return RedirectToAction("ListProductos", "Producto");
         }
 
         [HttpGet]
         public ActionResult AddToCart(Producto product)
         {
-            RedirectLogin();
+            Carrito carritocompra;
             CarritoBL cart = new CarritoBL();
-            return RedirectToAction("ListProductosxCategory", "Producto", new { id = product.categoriaId });
-        }
-
-        private void RedirectLogin()
-        {
             if (Session["UserSession"] == null)
             {
-                RedirectToAction("LogIn", "Login");
+                return RedirectToAction("LogIn", "Login");
             }
+            if (Session["ClientSession"] == null)
+            {
+                return RedirectToAction("CreateClienteData", "ClienteDatos");
+            }
+            var user = Session["ClientSession"] as ClienteDatos;
+            if(Session["Carrito"] != null)
+            {
+                carritocompra = Session["Carrito"] as Carrito;
+                cart.agregarItemCarrito(carritocompra.carritoId, product.productoId);
+                Session["Carrito"] = cart.getDataCarritoFull(carritocompra.carritoId);
+
+            }
+            else
+            {
+                carritocompra = new Carrito();
+                carritocompra.clienteId = user.clienteId;
+                cart.crearCarrito(carritocompra);                
+                cart.agregarItemCarrito(carritocompra.carritoId, product.productoId);
+                Session["Carrito"] = cart.getDataCarritoFull(carritocompra.carritoId);
+            }
+            return RedirectToAction("ListProductosxCategory", "Producto", new {id =product.categoriaId});
         }
     }
 }

@@ -20,11 +20,13 @@ namespace SuperMerk2.Models
         public string descripcion { get; set; }
         [Required]
         public DateTime fechaHora { get; set; }
+        public Bitacora()
+        {
 
+        }
         public Bitacora(Usuario user, string evento)
         {
             username = user.username;
-            usuario = user;
             descripcion = evento;
             fechaHora = DateTime.Now;
         }

@@ -1,4 +1,5 @@
-﻿using SuperMerk2.Models;
+﻿using SuperMerk2.Business;
+using SuperMerk2.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,9 +22,15 @@ namespace SuperMerk2.Controllers
             {
                 Business.UsuarioBL g = new Business.UsuarioBL();
                 var usuarioSession = g.Listar().Where(u => u.username == user.username && u.password == user.password).FirstOrDefault();
+
                 if (usuarioSession != null)
                 {
+                    ClienteDatos cliente = new DatosClienteBL().getDataCliente(usuarioSession.username);
+
+                    Session["ClientSession"] = cliente;
                     Session["UserSession"] = usuarioSession;
+                    //Log Evento
+                    new BitacoraController().RegistrarEvento(Session["UserSession"] as Usuario, "Se logeo el usuario");
                     return RedirectToAction("Index", "Home");
                 }
                 else

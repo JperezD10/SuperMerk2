@@ -44,6 +44,8 @@ namespace SuperMerk2.Controllers
             {
                 CategoriaBL cat = new CategoriaBL();
                 cat.modificarCategoria(categoria);
+                //Log Evento
+                //new BitacoraController().RegistrarEvento(Session["UserSession"] as Usuario, "Modifico una categoria");
                 return RedirectToAction("ListCategorias", "Categoria");
             }
             else
@@ -56,6 +58,8 @@ namespace SuperMerk2.Controllers
             CategoriaBL cat = new CategoriaBL(); 
             var categoria = cat.getDataCategoria(idCategoria);
             cat.eliminarCategoria(categoria);
+            //Log Evento
+           // new BitacoraController().RegistrarEvento(Session["UserSession"] as Usuario, "Borro una categoria");
             return RedirectToAction("ListCategorias", "Categoria");
         }
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SuperMerk2.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,7 +12,8 @@ namespace SuperMerk2.Controllers
         // GET: Carrito
         public ActionResult MostrarCarrito()
         {
-            return View();
+            var carrito = Session["Carrito"] as Carrito;
+            return View(carrito);
         }
 
         // GET: Carrito/Details/5
