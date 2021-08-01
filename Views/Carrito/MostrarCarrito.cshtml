@@ -108,9 +108,6 @@
                             <label>Producto</label>
                         </th>
                         <th>
-                            <label>Cantidad</label>
-                        </th>
-                        <th>
                             <label>Precio Unitario</label>
                         </th>
                         <th></th>
@@ -125,9 +122,6 @@
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.producto.nombre)
-                            </td>
-                            <td>
-                                @Html.EditorFor(modelItem => item.cantidadItems, new { htmlAttributes = new { @class = "form__input", @min = "1", @max = $"{item.producto.stockDisponible}", placeholder = "" } })
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.producto.precio)
