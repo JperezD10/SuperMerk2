@@ -151,7 +151,7 @@ namespace SuperMerk2.Controllers
             {
                 carritocompra = Session["Carrito"] as Carrito;
                 int cantidadProductoCarrito = carritocompra.listaProductosCarrito.Where(p => p.productoId == product.productoId).Count();
-                if(product.stockDisponible == cantidadProductoCarrito)
+                if(product.stockDisponible <= cantidadProductoCarrito)
                 {
                     return RedirectToAction("ListProductosxCategory","Producto", new { id = product.categoriaId });
                 }
