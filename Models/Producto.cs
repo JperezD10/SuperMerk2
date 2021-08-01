@@ -35,5 +35,8 @@ namespace SuperMerk2.Models
         [RegularExpression("^[0-9]{2,3}$",ErrorMessage ="Solo valores de 2 y 3 cifras")]
         [DataType(DataType.Currency)]
         public double precio { get; set; }
+
+        [Required]
+        public bool Habilitado { get; set; }
     }
 }

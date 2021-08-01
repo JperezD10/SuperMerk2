@@ -26,7 +26,8 @@ namespace SuperMerk2.Business
         public void eliminarProducto(Producto prod)
         {
             var db = new Data.GenericDataRepository<Producto>();
-            db.Remove(prod);
+            prod.Habilitado = false;
+            db.Update(prod, p => p.productoId == prod.productoId);
         }
 
         public List<Producto> getAll()

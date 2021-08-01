@@ -83,6 +83,7 @@ namespace SuperMerk2.Migrations
                         imagen = c.String(),
                         stockDisponible = c.Int(nullable: false),
                         precio = c.Double(nullable: false),
+                        Habilitado = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.productoId)
                 .ForeignKey("dbo.Categoria", t => t.categoriaId, cascadeDelete: true)

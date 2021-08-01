@@ -97,7 +97,7 @@
         }
         else
         {
-            @Html.BeginForm()
+            @Html.BeginForm("Checkout","Ventas",new { idCarrito = Model.carritoId })
             {
                 <table class="datatable">
                     <tr>
@@ -126,17 +126,17 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.producto.precio)
                             </td>
-                            <th>@Html.ActionLink("Eliminar", "EliminarProducto", "Carrito", new { carrito= item.carritoId, productoEliminar = item.itemCarritoId }, new { })</th>
+                            <th>@Html.ActionLink("Eliminar", "EliminarProducto", "Carrito", new { carrito = item.carritoId, productoEliminar = item.itemCarritoId }, new { })</th>
                         </tr>
                     }
 
 
                 </table>
             }
+            <input type="submit" value="Save" class="button" />
         }
         <button type="button" onclick="mostrarComprar()">Mostrar total</button>
         <p id="Precio" style="display:none">Total: $@total</p>
     </div>
-    <input class="button" type="button" value="check out">
 </body>
 </html>

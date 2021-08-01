@@ -190,9 +190,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202107312103582_InitialCreate.cs" />
-    <Compile Include="Migrations\202107312103582_InitialCreate.Designer.cs">
-      <DependentUpon>202107312103582_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\202108011946324_InitialCreate.cs" />
+    <Compile Include="Migrations\202108011946324_InitialCreate.Designer.cs">
+      <DependentUpon>202108011946324_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Bitacora.cs" />
@@ -306,12 +306,12 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202107312103582_InitialCreate.resx">
-      <DependentUpon>202107312103582_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
+    <TypeScriptCompile Include="Scripts\TS\app.ts" />
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="Scripts\TS\app.ts" />
+    <EmbeddedResource Include="Migrations\202108011946324_InitialCreate.resx">
+      <DependentUpon>202108011946324_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

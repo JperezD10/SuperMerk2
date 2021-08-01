@@ -15,7 +15,7 @@ namespace SuperMerk2.Business
 
         public int GetHashCode(ProductoDeCarrito obj)
         {
-            throw new NotImplementedException();
+            return obj.productoId.GetHashCode();
         }
     }
 
@@ -43,11 +43,13 @@ namespace SuperMerk2.Business
         {
             //Separo productos distintos
             List<ProductoDeCarrito> listaProdsSeparados = carrito.listaProductosCarrito.Distinct(new ItemEqualityComparer()).ToList();
-            //Por cada producto diferente, me fijo si excede el stock del mismo
+            //Por cada producto diferente, me fijo si excede el stock del 
             foreach (var item in listaProdsSeparados)
             {
+                ProductoBL bl = new ProductoBL();
+                bool Habilitado = bl.getDataProducto(item.productoId).Habilitado;
                 int cantidadEnLista = carrito.listaProductosCarrito.Where(x => x.productoId == item.productoId).Count();
-                if(cantidadEnLista > item.producto.stockDisponible)
+                if(cantidadEnLista > item.producto.stockDisponible || !Habilitado)
                 {
                     return false;
                 }

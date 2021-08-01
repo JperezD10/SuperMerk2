@@ -34,10 +34,10 @@ namespace SuperMerk2.Migrations
                 context.SaveChanges();
 
                 //Productos
-                var productocarne1 = new Producto() { nombre = "Bife de Chorizo", descripcion = "El mejor bife de la zona", categoria = carni, stockDisponible = 20, precio = 600 };
-                var productocarne2 = new Producto() { nombre = "Vacio", descripcion = "Ideal para la parrilla", categoria = carni, stockDisponible = 15, precio = 450, };
-                var productoverdu1 = new Producto() { nombre = "Pera", descripcion = "Para el verano", categoria = verdu, stockDisponible = 0, precio = 35 };
-                var productopostre1 = new Producto() { nombre = "Torta de Chocolate", descripcion = "Espectacular con el cafe", categoria = postre, stockDisponible = 5, precio = 500 };
+                var productocarne1 = new Producto() { nombre = "Bife de Chorizo", descripcion = "El mejor bife de la zona", categoria = carni, stockDisponible = 20, precio = 600, Habilitado=true };
+                var productocarne2 = new Producto() { nombre = "Vacio", descripcion = "Ideal para la parrilla", categoria = carni, stockDisponible = 15, precio = 450, Habilitado = true };
+                var productoverdu1 = new Producto() { nombre = "Pera", descripcion = "Para el verano", categoria = verdu, stockDisponible = 0, precio = 35, Habilitado = true };
+                var productopostre1 = new Producto() { nombre = "Torta de Chocolate", descripcion = "Espectacular con el cafe", categoria = postre, stockDisponible = 5, precio = 500, Habilitado = true };
 
                 context.Productos.AddOrUpdate(x => x.productoId,
                    productocarne1,

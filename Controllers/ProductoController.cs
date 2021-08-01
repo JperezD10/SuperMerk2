@@ -18,7 +18,7 @@ namespace SuperMerk2.Controllers
                 RedirectToAction("LogIn", "Login");
             }
             ProductoBL biz = new ProductoBL();
-            var product = biz.getAll();
+            var product = biz.getAll().Where(p => p.Habilitado == true).ToList();
             return View(product);
         }
         [HttpGet]
@@ -57,7 +57,7 @@ namespace SuperMerk2.Controllers
                 return RedirectToAction("LogIn", "Login");
             }
             ProductoBL biz = new ProductoBL();
-            var product = biz.getProductosPorCategoria(id);
+            var product = biz.getProductosPorCategoria(id).Where(p =>p.Habilitado==true).ToList();
             return View("ListAllProductos", product);
         }
 
