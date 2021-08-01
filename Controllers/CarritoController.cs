@@ -65,9 +65,6 @@ namespace SuperMerk2.Controllers
         }
 
         public ActionResult ListarDetalleCarrito(int id)
-        // POST: Carrito/Delete/5
-        [HttpGet]
-        public ActionResult EliminarProducto(int carrito, int productoEliminar)
         {
             Usuario usuario = Session["UserSession"] as Usuario;
             if (usuario != null)
@@ -82,16 +79,21 @@ namespace SuperMerk2.Controllers
                 {
                     return RedirectToAction("Index", "Home");
                 }
-                Business.CarritoBL c = new Business.CarritoBL();
-                var carritoActualziado = c.borrarItemCarrito(carrito, productoEliminar);
-                Session["Carrito"] = carritoActualziado;
-                return View("MostrarCarrito", carritoActualziado);
             }
             else
             {
                 return RedirectToAction("LogIn", "Login");
             }
 
+        }
+        // POST: Carrito/Delete/5
+        [HttpGet]
+        public ActionResult EliminarProducto(int carrito, int productoEliminar)
+        {
+            Business.CarritoBL c = new Business.CarritoBL();
+            var carritoActualziado = c.borrarItemCarrito(carrito, productoEliminar);
+            Session["Carrito"] = carritoActualziado;
+            return View("MostrarCarrito", carritoActualziado);
         }
 
 
