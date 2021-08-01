@@ -42,7 +42,7 @@ namespace SuperMerk2.Business
         public void agregarProdACarrito(ProductoDeCarrito prod)
         {
             var db = new Data.GenericDataRepository<ProductoDeCarrito>();
-            db.Add();
+            db.Add(prod);
         }
 
         //Borrar ProductodeCarrito

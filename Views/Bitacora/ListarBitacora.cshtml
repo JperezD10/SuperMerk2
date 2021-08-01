@@ -1,8 +1,14 @@
 ﻿@model IEnumerable<SuperMerk2.Models.Bitacora>
+@using SuperMerk2.Models;
+@using SuperMerk2.Business;
 
 @{
     ViewBag.Title = "ListarBitacora";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    UsuarioBL biz = new UsuarioBL();
+    var usuarios = biz.Listar();
+    var lstBitacora = Model.ToList();
+    string usuario = "";
 }
 
 <!DOCTYPE html>
@@ -12,6 +18,19 @@
     <title> Lista Bitacora</title>
 </head>
 <body>
+    @using (Html.BeginForm("ListarBitacoraPorUsuario", "Bitacora"))
+    {
+        <select id="filtro" name="filtro">
+            @foreach (var user in usuarios)
+            {
+                <option>@user.username</option>
+            }
+        </select>
+        <input type="submit" value="search" class="button" />
+    }
+
+
+
     <div class="dataTable-Container">
         <table class="datatable">
             <tr>
@@ -21,24 +40,46 @@
                 <th>
                     @Html.DisplayNameFor(model => model.descripcion)
                 </th>
-                <th></th>
+                <th>
+                    @Html.DisplayNameFor(model => model.fechaHora)
+
+                </th>
             </tr>
 
             @foreach (var item in Model)
             {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.username)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.descripcion)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.idBitacora }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.idBitacora }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.idBitacora })
-                    </td>
-                </tr>
+                if (usuario != "")
+                {
+                    if (item.username == usuario)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.username)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.descripcion)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.fechaHora)
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.username)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.descripcion)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.fechaHora)
+                        </td>
+                    </tr>
+                }
+
             }
         </table>
     </div>

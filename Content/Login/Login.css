@@ -33,7 +33,8 @@
     display: flex;
     justify-content: center;
     text-align: center;
-    flex-direction:column;
+    flex-direction: column;
+    margin-right: 150px;
 }
 
 .img img {
@@ -91,7 +92,6 @@ margin-top: 0;
     .input-div > div > h5 {
         position: absolute;
         left: 10px;
-        top: 50%;
         transform: translateY(-50%);
         color: #999;
         font-size: 18px;

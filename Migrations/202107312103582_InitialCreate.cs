@@ -35,12 +35,12 @@ namespace SuperMerk2.Migrations
                 c => new
                     {
                         carritoId = c.Int(nullable: false, identity: true),
+                        clienteId = c.Int(nullable: false),
                         finalizado = c.Boolean(nullable: false),
-                        clienteDatos_clienteId = c.Int(),
                     })
                 .PrimaryKey(t => t.carritoId)
-                .ForeignKey("dbo.ClienteDatos", t => t.clienteDatos_clienteId)
-                .Index(t => t.clienteDatos_clienteId);
+                .ForeignKey("dbo.ClienteDatos", t => t.clienteId, cascadeDelete: true)
+                .Index(t => t.clienteId);
             
             CreateTable(
                 "dbo.ClienteDatos",
@@ -122,7 +122,7 @@ namespace SuperMerk2.Migrations
             DropForeignKey("dbo.ProductoDeCarrito", "carritoId", "dbo.Carrito");
             DropForeignKey("dbo.ProductoDeCarrito", "productoId", "dbo.Producto");
             DropForeignKey("dbo.Producto", "categoriaId", "dbo.Categoria");
-            DropForeignKey("dbo.Carrito", "clienteDatos_clienteId", "dbo.ClienteDatos");
+            DropForeignKey("dbo.Carrito", "clienteId", "dbo.ClienteDatos");
             DropForeignKey("dbo.ClienteDatos", "username", "dbo.Usuario");
             DropForeignKey("dbo.Bitacora", "username", "dbo.Usuario");
             DropIndex("dbo.Venta", new[] { "carritoId" });
@@ -131,7 +131,7 @@ namespace SuperMerk2.Migrations
             DropIndex("dbo.ProductoDeCarrito", new[] { "productoId" });
             DropIndex("dbo.ProductoDeCarrito", new[] { "carritoId" });
             DropIndex("dbo.ClienteDatos", new[] { "username" });
-            DropIndex("dbo.Carrito", new[] { "clienteDatos_clienteId" });
+            DropIndex("dbo.Carrito", new[] { "clienteId" });
             DropIndex("dbo.Bitacora", new[] { "username" });
             DropTable("dbo.Venta");
             DropTable("dbo.Categoria");

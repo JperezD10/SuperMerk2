@@ -30,6 +30,10 @@ namespace SuperMerk2.Controllers
             if (gestor.altaUsuario(user))
             {
                 Session["ErrorRegistro"] = null;
+                ClienteDatos cliente = new ClienteDatos();
+                cliente.usuario = user;
+                cliente.username = user.username;
+                new DatosClienteBL().altaDatosCliente(cliente);
                 return RedirectToAction("LogIn", "Login");
             }
             else

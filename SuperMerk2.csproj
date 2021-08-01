@@ -175,6 +175,7 @@
     <Compile Include="Controllers\BitacoraController.cs" />
     <Compile Include="Controllers\CarritoController.cs" />
     <Compile Include="Controllers\CategoriaController.cs" />
+    <Compile Include="Controllers\ClienteDatosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ProductoController.cs" />
@@ -185,9 +186,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202107290037315_InitialCreate.cs" />
-    <Compile Include="Migrations\202107290037315_InitialCreate.Designer.cs">
-      <DependentUpon>202107290037315_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\202107312103582_InitialCreate.cs" />
+    <Compile Include="Migrations\202107312103582_InitialCreate.Designer.cs">
+      <DependentUpon>202107312103582_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Bitacora.cs" />
@@ -210,6 +211,7 @@
     <Content Include="Content\Imagenes\avatar.svg" />
     <Content Include="Content\Imagenes\Bag.png.png" />
     <Content Include="Content\Imagenes\kisspng-portable-network-graphics-supermarket-image-comput-cajas-supermercado-la-tienda-inteligente-5ba47f231cda63.7889709115375071071182.png" />
+    <Content Include="Content\Imagenes\Tomate_Triste.png" />
     <Content Include="Content\Imagenes\wave.png" />
     <Content Include="Content\Layout\Layout.css" />
     <Content Include="Content\Login\Login.css" />
@@ -277,11 +279,12 @@
     <Content Include="Views\Producto\DetalleProducto.cshtml" />
     <Content Include="Views\Bitacora\ListarBitacora.cshtml" />
     <Content Include="Views\Login\LogIn.cshtml" />
+    <Content Include="Views\ClienteDatos\CreateClienteData.cshtml" />
+    <Content Include="Views\Carrito\MostrarCarrito.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Archivo\" />
-    <Folder Include="Views\Carrito\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -304,8 +307,8 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202107290037315_InitialCreate.resx">
-      <DependentUpon>202107290037315_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202107312103582_InitialCreate.resx">
+      <DependentUpon>202107312103582_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

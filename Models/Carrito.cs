@@ -11,7 +11,8 @@ namespace SuperMerk2.Models
     {
         [Key]
         public int carritoId { get; set; }
-
+        [ForeignKey("clienteDatos")]
+        public int clienteId { get; set; }
         public ClienteDatos clienteDatos { get; set; }
         public List<ProductoDeCarrito> listaProductosCarrito { get; set; }
 
