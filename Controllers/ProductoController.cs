@@ -204,6 +204,8 @@ namespace SuperMerk2.Controllers
                 {
                     cart.agregarItemCarrito(carritocompra.carritoId, product.productoId);
                     Session["Carrito"] = cart.getDataCarritoFull(carritocompra.carritoId);
+                    //Log Evento
+                    new BitacoraController().RegistrarEvento(Session["UserSession"] as Usuario, "Agrego un item a su carrito");
                 }
 
             }
@@ -211,8 +213,12 @@ namespace SuperMerk2.Controllers
             {
                 carritocompra = new Carrito();
                 carritocompra.clienteId = user.clienteId;
-                cart.crearCarrito(carritocompra);                
+                cart.crearCarrito(carritocompra);
+                //Log Evento
+                new BitacoraController().RegistrarEvento(Session["UserSession"] as Usuario, "Creo un carrito");
                 cart.agregarItemCarrito(carritocompra.carritoId, product.productoId);
+                //Log Evento
+                new BitacoraController().RegistrarEvento(Session["UserSession"] as Usuario, "Agrego un producto a su carrito");
                 Session["Carrito"] = cart.getDataCarritoFull(carritocompra.carritoId);
             }
             return RedirectToAction("ListProductosxCategory", "Producto", new {id =product.categoriaId});

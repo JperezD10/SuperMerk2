@@ -30,13 +30,20 @@ namespace SuperMerk2.Controllers
 
         [HttpPost]
         public ActionResult DetalleCliente(ClienteDatos cliente)
-        {            
-            DatosClienteBL biz = new DatosClienteBL();
-            var user = Session["UserSession"] as Usuario;
-            cliente.usuario = user;
-            biz.modificarDatosCliente(cliente);
-            Session["ClientSession"] = cliente;
-            return View(cliente);
+        {
+            if (ModelState.IsValid)
+            {
+                DatosClienteBL biz = new DatosClienteBL();
+                var user = Session["UserSession"] as Usuario;
+                cliente.usuario = user;
+                biz.modificarDatosCliente(cliente);
+                Session["ClientSession"] = cliente;
+                return View(cliente);
+            }
+            else
+            {
+                return View();
+            }
         }
 
         // GET: ClienteDatos/Details/5

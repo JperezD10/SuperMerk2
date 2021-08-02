@@ -93,6 +93,8 @@ namespace SuperMerk2.Controllers
             Business.CarritoBL c = new Business.CarritoBL();
             var carritoActualziado = c.borrarItemCarrito(carrito, productoEliminar);
             Session["Carrito"] = carritoActualziado;
+            //Log Evento
+            new BitacoraController().RegistrarEvento(Session["UserSession"] as Usuario, "Elimino un producto de su carrito");
             return View("MostrarCarrito", carritoActualziado);
         }
 
