@@ -42,7 +42,7 @@ namespace SuperMerk2.Controllers
             }
             else
             {
-                return View();
+                return View(cliente);
             }
         }
 
